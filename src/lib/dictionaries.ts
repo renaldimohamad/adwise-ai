@@ -1,0 +1,133 @@
+export type Dictionary = typeof en;
+
+export const en = {
+  nav: {
+    dashboard: "Dashboard",
+    history: "History",
+    login: "Log in",
+    signup: "Sign up",
+    logout: "Log out",
+  },
+  hero: {
+    badge: "Revolutionizing Ad Optimization",
+    title: "Master your ads with",
+    titleAccent: "AI Intelligence",
+    subtitle: "Eliminate guesswork. AdWise AI analyzes your cross-platform metrics to deliver enterprise-grade insights that scale your performance instantly.",
+    ctaPrimary: "Get Started Free",
+    ctaSecondary: "Client Login",
+  },
+  features: {
+    feature1: {
+      title: "Metrics Clarity",
+      desc: "Automated processing of CPA, CPC, and CTR to provide a crystal-clear performance architecture.",
+    },
+    feature2: {
+      title: "Instant Diagnostics",
+      desc: "Identify performance leakage within milliseconds. Our AI spots inefficiency before it drains your budget.",
+    },
+    feature3: {
+      title: "Execution Roadmap",
+      desc: "Receive prioritized, high-impact optimization protocols tailored to your unique campaign ecosystem.",
+    },
+  },
+  auth: {
+    loginTitle: "Neural Access",
+    loginSubtitle: "Authorized credentials required",
+    registerTitle: "Neural Foundry",
+    registerSubtitle: "Initiating new user protocol",
+    emailLabel: "Identification (Email)",
+    passwordLabel: "Access Token (Password)",
+    confirmPasswordLabel: "Verify Token",
+    btnAuthenticate: "Authenticate",
+    btnInitialize: "Initialize Account",
+    noAccount: "No access key?",
+    hasAccount: "System identity already exists?",
+    switchRegister: "Create Foundry Account",
+    switchLogin: "Back to Authentication",
+  },
+  dashboard: {
+    title: "Campaign Analysis",
+    subtitle: "Neural processing of performance metrics",
+    inputTitle: "Campaign Data",
+    nameLabel: "Campaign Name",
+    platformLabel: "Platform",
+    impressionsLabel: "Impressions",
+    clicksLabel: "Clicks",
+    conversionsLabel: "Conversions",
+    spendLabel: "Spend ($)",
+    btnAnalyze: "Analyze Campaign",
+    btnAnalyzing: "Analyzing...",
+    emptyTitle: "Strategic Insights",
+    emptyDesc: "Connect your campaign data on the left to unlock high-performance AI strategies.",
+    planTitle: "Strategy Execution Plan",
+    summaryTitle: "Executive Summary",
+    bottlenecksTitle: "Bottlenecks",
+    actionsTitle: "Strategic Actions",
+  }
+};
+
+export const id: Dictionary = {
+  nav: {
+    dashboard: "Dasbor",
+    history: "Riwayat",
+    login: "Masuk",
+    signup: "Daftar",
+    logout: "Keluar",
+  },
+  hero: {
+    badge: "Merevolusi Optimasi Iklan",
+    title: "Kuasai iklan Anda dengan",
+    titleAccent: "Kecerdasan AI",
+    subtitle: "Hilangkan spekulasi. AdWise AI menganalisis metrik lintas platform Anda untuk memberikan wawasan kelas perusahaan yang meningkatkan performa Anda secara instan.",
+    ctaPrimary: "Mulai Gratis",
+    ctaSecondary: "Login Klien",
+  },
+  features: {
+    feature1: {
+      title: "Kejelasan Metrik",
+      desc: "Pemrosesan otomatis CPA, CPC, dan CTR untuk memberikan arsitektur performa yang sangat jelas.",
+    },
+    feature2: {
+      title: "Diagnosa Instan",
+      desc: "Identifikasi kebocoran performa dalam hitungan milidetik. AI kami mendeteksi inefisiensi sebelum menguras anggaran Anda.",
+    },
+    feature3: {
+      title: "Peta Jalan Eksekusi",
+      desc: "Terima protokol optimasi berdampak tinggi yang diprioritaskan sesuai dengan ekosistem kampanye unik Anda.",
+    },
+  },
+  auth: {
+    loginTitle: "Akses Neural",
+    loginSubtitle: "Kredensial resmi diperlukan",
+    registerTitle: "Neural Foundry",
+    registerSubtitle: "Memulai protokol pengguna baru",
+    emailLabel: "Identifikasi (Email)",
+    passwordLabel: "Token Akses (Kata Sandi)",
+    confirmPasswordLabel: "Verifikasi Token",
+    btnAuthenticate: "Autentikasi",
+    btnInitialize: "Inisialisasi Akun",
+    noAccount: "Tidak punya kunci akses?",
+    hasAccount: "Identitas sistem sudah ada?",
+    switchRegister: "Buat Akun Foundry",
+    switchLogin: "Kembali ke Autentikasi",
+  },
+  dashboard: {
+    title: "Analisis Kampanye",
+    subtitle: "Pemrosesan neural metrik performa",
+    inputTitle: "Data Kampanye",
+    nameLabel: "Nama Kampanye",
+    platformLabel: "Platform",
+    impressionsLabel: "Impresi",
+    clicksLabel: "Klik",
+    conversionsLabel: "Konversi",
+    spendLabel: "Biaya ($)",
+    btnAnalyze: "Analisis Kampanye",
+    btnAnalyzing: "Menganalisis...",
+    emptyTitle: "Wawasan Strategis",
+    emptyDesc: "Hubungkan data kampanye Anda di sebelah kiri untuk membuka strategi AI berperforma tinggi.",
+    planTitle: "Rencana Eksekusi Strategi",
+    summaryTitle: "Ringkasan Eksekutif",
+    bottlenecksTitle: "Hambatan",
+    actionsTitle: "Tindakan Strategis",
+  }
+};
