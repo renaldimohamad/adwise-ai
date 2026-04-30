@@ -33,7 +33,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-tight text-foreground mb-8 leading-[0.85] px-2"
+            className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-foreground mb-8 leading-[0.9] px-2"
           >
             {dict.hero.title} <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-br from-primary via-secondary to-accent animate-gradient">
@@ -45,7 +45,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-lg md:text-2xl text-foreground/50 mb-12 max-w-2xl mx-auto leading-relaxed font-medium px-4"
+            className="text-lg sm:text-xl md:text-2xl text-foreground/50 mb-12 max-w-2xl mx-auto leading-relaxed font-medium px-4"
           >
             {dict.hero.subtitle}
           </motion.p>
@@ -171,9 +171,9 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`group bg-card p-10 rounded-[2.5rem] shadow-premium border border-border hover:border-${feature.color}/20 transition-all`}
+              className={`group bg-card p-8 sm:p-10 rounded-[2.5rem] shadow-premium border border-border hover:border-primary/20 transition-all`}
             >
-              <div className={`w-14 h-14 bg-${feature.color}/10 text-${feature.color} rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform`}>
+              <div className="w-14 h-14 bg-foreground/5 text-primary rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
                 {feature.icon}
               </div>
               <h3 className="text-2xl font-black mb-4 tracking-tight">{feature.title}</h3>

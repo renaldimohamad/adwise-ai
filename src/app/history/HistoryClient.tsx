@@ -210,7 +210,7 @@ export default function HistoryClient() {
             >
               <Link
                 href={`/history/${camp.id}`}
-                className="block h-full bg-card border border-border/80 rounded-[3rem] p-10 shadow-premium hover:shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] hover:border-primary/40 transition-all duration-700 overflow-hidden text-left relative z-10"
+                className="block h-full bg-card border border-border/80 rounded-[2.5rem] sm:rounded-[3rem] p-6 sm:p-10 shadow-premium hover:shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] hover:border-primary/40 transition-all duration-700 overflow-hidden text-left relative z-10"
               >
                 {/* Platform specific mesh-glow */}
                 <div className={`absolute -top-20 -right-20 w-56 h-56 ${style.bg} rounded-full blur-[80px] group-hover:opacity-100 opacity-60 transition-all duration-700`} />

@@ -322,7 +322,7 @@ export default function DashboardClient() {
                 className="space-y-8"
               >
                 {/* Condensed Header Section */}
-                <div className="relative group overflow-hidden glass rounded-[3rem] p-10 lg:p-12 border-white/20 dark:border-white/10 shadow-premium">
+                <div className="relative group overflow-hidden glass rounded-[2.5rem] sm:rounded-[3rem] p-6 sm:p-10 lg:p-12 border-white/20 dark:border-white/10 shadow-premium">
                   <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 blur-[130px] rounded-full -mr-64 -mt-64 group-hover:bg-primary/20 transition-all duration-1000" />
                   <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-12">
                     <div className="space-y-4 max-w-xl text-left">
@@ -330,16 +330,16 @@ export default function DashboardClient() {
                         <Sparkles className="w-3.5 h-3.5" />
                         {dict.dashboard.aiVerified}
                       </div>
-                      <h2 className="text-4xl lg:text-6xl font-black text-foreground tracking-tighter leading-none truncate pb-2">
+                      <h2 className="text-3xl sm:text-4xl lg:text-6xl font-black text-foreground tracking-tighter leading-none truncate pb-2">
                         {result.name}
                       </h2>
-                      <p className="text-xl font-medium text-foreground/50 leading-relaxed italic border-l-2 border-primary/20 pl-6 line-clamp-2">
+                      <p className="text-lg sm:text-xl font-medium text-foreground/50 leading-relaxed italic border-l-2 border-primary/20 pl-6 line-clamp-2">
                         &quot;{result.analyses[0]?.aiSummary}&quot;
                       </p>
                     </div>
-                    <div className="shrink-0 flex flex-col items-center justify-center p-10 glass rounded-[2.5rem] shadow-glow shadow-primary/5 border-white/5 min-w-[200px]">
+                    <div className="shrink-0 flex flex-col items-center justify-center p-8 sm:p-10 glass rounded-[2rem] sm:rounded-[2.5rem] shadow-glow shadow-primary/5 border-white/5 min-w-[180px] sm:min-w-[200px]">
                       <span className="text-[10px] font-black text-foreground/30 uppercase tracking-[0.3em] mb-4">{dict.dashboard.performanceScore}</span>
-                      <div className="text-7xl font-black text-primary tracking-tighter relative tabular-nums">
+                      <div className="text-6xl sm:text-7xl font-black text-primary tracking-tighter relative tabular-nums">
                         {Math.min(100, Math.round((result.ctr * 20) + (result.conversions / (result.clicks || 1) * 100) || 0))}%
                         <div className="absolute -top-3 -right-3 w-10 h-10 bg-primary/20 blur-xl rounded-full" />
                       </div>
@@ -348,7 +348,7 @@ export default function DashboardClient() {
                 </div>
 
                 {/* Metrics Bento Grid - Perfectly Aligned */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                   {[
                     { label: dict.dashboard.metrics.ctr, value: `${result.ctr.toFixed(2)}%`, key: 'ctr', icon: <TrendingUp className="w-4 h-4" />, desc: dict.dashboard.metrics.ctrDesc },
                     { label: dict.dashboard.metrics.cpc, value: `$${result.cpc.toFixed(2)}`, key: 'cpc', icon: <DollarSign className="w-4 h-4" />, desc: dict.dashboard.metrics.cpcDesc },
@@ -359,7 +359,7 @@ export default function DashboardClient() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.1 * idx }}
-                      className={`group relative overflow-hidden p-8 rounded-[2.5rem] border transition-all duration-700 hover:-translate-y-1 ${getMetricColor(item.key, (result as any)[item.key])}`}
+                      className={`group relative overflow-hidden p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] border transition-all duration-700 hover:-translate-y-1 ${getMetricColor(item.key, (result as any)[item.key])}`}
                     >
                       <div className="relative z-10 space-y-4 text-left">
                         <div className="flex items-center justify-between opacity-40">
@@ -367,7 +367,7 @@ export default function DashboardClient() {
                           <span className="p-1.5 border border-current rounded-lg">{item.icon}</span>
                         </div>
                         <div className="flex items-end gap-2">
-                           <div className="text-5xl font-black tracking-tighter tabular-nums group-hover:scale-105 transition-transform duration-500 origin-left">{item.value}</div>
+                           <div className="text-4xl sm:text-5xl font-black tracking-tighter tabular-nums group-hover:scale-105 transition-transform duration-500 origin-left">{item.value}</div>
                            <div className="mb-2 w-2 h-2 rounded-full bg-current animate-pulse" />
                         </div>
                         <div className="space-y-2">
@@ -429,22 +429,22 @@ export default function DashboardClient() {
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.4 }}
-                    className="premium-card rounded-[3rem] p-10 border-white/10 dark:border-white/5 flex flex-col h-full text-left"
+                    className="premium-card rounded-[2.5rem] sm:rounded-[3rem] p-6 sm:p-10 border-white/10 dark:border-white/5 flex flex-col h-full text-left"
                   >
                     <div className="flex items-center gap-5 mb-8">
-                      <div className="w-14 h-14 bg-red-500/10 rounded-2xl flex items-center justify-center border border-red-500/20">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 bg-red-500/10 rounded-2xl flex items-center justify-center border border-red-500/20">
                         <AlertCircle className="w-6 h-6 text-red-500" />
                       </div>
                       <div>
-                        <h3 className="text-2xl font-black tracking-tighter">{dict.dashboard.bottlenecksTitle}</h3>
-                        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-red-500/40">{dict.dashboard.bottlenecksSubtitle}</p>
+                        <h3 className="text-xl sm:text-2xl font-black tracking-tighter">{dict.dashboard.bottlenecksTitle}</h3>
+                        <p className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-red-500/40">{dict.dashboard.bottlenecksSubtitle}</p>
                       </div>
                     </div>
                     <div className="space-y-4 flex-grow">
                       {result.analyses[0]?.aiIssues.split('\n').filter(l => l.trim()).map((line, i) => (
-                        <div key={i} className="flex gap-4 group p-5 rounded-[2rem] hover:bg-red-500/5 transition-all border border-transparent hover:border-red-500/10 items-start">
+                        <div key={i} className="flex gap-4 group p-4 sm:p-5 rounded-[1.5rem] sm:rounded-[2rem] hover:bg-red-500/5 transition-all border border-transparent hover:border-red-500/10 items-start">
                           <div className="w-1.5 h-6 bg-red-500/10 rounded-full group-hover:bg-red-500 transition-colors shrink-0 mt-0.5" />
-                          <p className="text-lg font-bold text-foreground/60 group-hover:text-foreground leading-tight tracking-tight">{line.replace(/^[-*]\s*/, '')}</p>
+                          <p className="text-base sm:text-lg font-bold text-foreground/60 group-hover:text-foreground leading-tight tracking-tight">{line.replace(/^[-*]\s*/, '')}</p>
                         </div>
                       ))}
                     </div>
@@ -455,26 +455,26 @@ export default function DashboardClient() {
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.5 }}
-                    className="bg-primary text-white border border-primary/20 rounded-[3rem] p-10 shadow-2xl shadow-primary/20 relative overflow-hidden flex flex-col h-full text-left"
+                    className="bg-primary text-white border border-primary/20 rounded-[2.5rem] sm:rounded-[3rem] p-6 sm:p-10 shadow-2xl shadow-primary/20 relative overflow-hidden flex flex-col h-full text-left"
                   >
                     <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-[80px] -mr-32 -mt-32" />
                     <div className="flex items-center gap-5 mb-8 relative z-10">
-                      <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center border border-white/10">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 rounded-2xl flex items-center justify-center border border-white/10">
                         <TrendingUp className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <h3 className="text-2xl font-black tracking-tighter">{dict.dashboard.actionsTitle}</h3>
-                        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40">{dict.dashboard.actionsSubtitle}</p>
+                        <h3 className="text-xl sm:text-2xl font-black tracking-tighter">{dict.dashboard.actionsTitle}</h3>
+                        <p className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-white/40">{dict.dashboard.actionsSubtitle}</p>
                       </div>
                     </div>
                     <div className="space-y-4 relative z-10 flex-grow">
                       {result.analyses[0]?.aiRecommendations.split('\n').filter(l => l.trim().length > 0).map((line, i) => (
                         <motion.div
                           key={i}
-                          className="flex gap-4 bg-white/10 p-6 rounded-[2rem] border border-white/10 hover:bg-white/15 transition-all group items-start"
+                          className="flex gap-4 bg-white/10 p-5 sm:p-6 rounded-[1.5rem] sm:rounded-[2rem] border border-white/10 hover:bg-white/15 transition-all group items-start"
                         >
                           <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
-                          <span className="text-lg font-bold leading-tight tracking-tight">{line.replace(/^[-*]\s*/, '').replace(/^\d+\.\s*/, '')}</span>
+                          <span className="text-base sm:text-lg font-bold leading-tight tracking-tight">{line.replace(/^[-*]\s*/, '').replace(/^\d+\.\s*/, '')}</span>
                         </motion.div>
                       ))}
                     </div>

@@ -179,87 +179,112 @@ export function Navbar() {
       {/* Mobile Menu Panel */}
       <AnimatePresence>
         {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t border-border/50 bg-white dark:bg-black overflow-hidden"
-          >
-            <div className="p-6 space-y-6">
-              {session && (
-                <div className="space-y-4">
-                  <Link 
-                    href="/dashboard" 
-                    onClick={() => setMenuOpen(false)}
-                    className="flex items-center gap-3 p-4 rounded-2xl bg-foreground/[0.03] text-foreground font-black uppercase tracking-widest text-xs"
-                  >
-                    <LayoutDashboard className="w-4 h-4 text-primary" />
-                    {dict.nav.dashboard}
-                  </Link>
-                  <Link 
-                    href="/history" 
-                    onClick={() => setMenuOpen(false)}
-                    className="flex items-center gap-3 p-4 rounded-2xl bg-foreground/[0.03] text-foreground font-black uppercase tracking-widest text-xs"
-                  >
-                    <HistoryIcon className="w-4 h-4 text-primary" />
-                    {dict.nav.history}
-                  </Link>
-                </div>
-              )}
-              
-              {!session && (
-                <div className="grid grid-cols-2 gap-4">
-                  <Link 
-                    href="/auth" 
-                    onClick={() => setMenuOpen(false)}
-                    className="flex items-center justify-center p-4 rounded-2xl bg-foreground/[0.03] text-foreground font-bold text-sm"
-                  >
-                    {dict.nav.login}
-                  </Link>
-                  <Link 
-                    href="/auth?mode=register" 
-                    onClick={() => setMenuOpen(false)}
-                    className="flex items-center justify-center p-4 rounded-2xl bg-primary text-white font-bold text-sm"
-                  >
-                    {dict.nav.signup}
-                  </Link>
-                </div>
-              )}
-
-              <div className="pt-4 border-t border-border/50 flex items-center justify-between">
-                 <div className="flex items-center gap-4">
-                    <button
-                      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                      className="p-3 bg-foreground/[0.03] rounded-xl text-foreground/60"
-                    >
-                      {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-                    </button>
-                    <div className="flex gap-2">
-                       {['en', 'id'].map((lang) => (
-                         <button
-                           key={lang}
-                           onClick={() => setLanguage(lang as any)}
-                           className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${language === lang ? 'bg-primary text-white' : 'bg-foreground/[0.03] text-foreground/40'}`}
-                         >
-                           {lang}
-                         </button>
-                       ))}
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMenuOpen(false)}
+              className="fixed inset-0 top-[60px] bg-background/60 backdrop-blur-md z-40 md:hidden"
+            />
+            
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="absolute top-full left-0 right-0 z-50 md:hidden border-t border-border/50 bg-background/95 backdrop-blur-2xl overflow-hidden shadow-2xl"
+            >
+              <div className="p-6 space-y-8">
+                {session && (
+                  <div className="space-y-3">
+                    <div className="px-4 py-2 mb-2">
+                       <p className="text-[10px] font-black uppercase tracking-[0.3em] text-foreground/30 mb-1">Authenticated as</p>
+                       <p className="text-sm font-bold text-foreground truncate">{session.user.email}</p>
                     </div>
-                 </div>
-                 {session && (
-                    <button
-                      onClick={async () => {
-                        await signOut({ redirect: false });
-                        window.location.href = "/";
-                      }}
-                      className="p-3 text-red-500 bg-red-500/10 rounded-xl"
+                    <Link 
+                      href="/dashboard" 
+                      onClick={() => setMenuOpen(false)}
+                      className="flex items-center gap-4 p-5 rounded-[1.5rem] bg-foreground/[0.03] hover:bg-primary/10 text-foreground group transition-all"
                     >
-                      <LogOut className="w-5 h-5" />
-                    </button>
-                 )}
+                      <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                        <LayoutDashboard className="w-5 h-5" />
+                      </div>
+                      <span className="font-black uppercase tracking-widest text-[11px]">{dict.nav.dashboard}</span>
+                    </Link>
+                    <Link 
+                      href="/history" 
+                      onClick={() => setMenuOpen(false)}
+                      className="flex items-center gap-4 p-5 rounded-[1.5rem] bg-foreground/[0.03] hover:bg-primary/10 text-foreground group transition-all"
+                    >
+                      <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                        <HistoryIcon className="w-5 h-5" />
+                      </div>
+                      <span className="font-black uppercase tracking-widest text-[11px]">{dict.nav.history}</span>
+                    </Link>
+                  </div>
+                )}
+                
+                {!session && (
+                  <div className="grid grid-cols-1 gap-3">
+                    <Link 
+                      href="/auth" 
+                      onClick={() => setMenuOpen(false)}
+                      className="flex items-center justify-center p-5 rounded-[1.5rem] bg-foreground/[0.03] text-foreground font-black uppercase tracking-[0.2em] text-[11px]"
+                    >
+                      {dict.nav.login}
+                    </Link>
+                    <Link 
+                      href="/auth?mode=register" 
+                      onClick={() => setMenuOpen(false)}
+                      className="flex items-center justify-center p-5 rounded-[1.5rem] bg-primary text-white font-black uppercase tracking-[0.2em] text-[11px] shadow-lg shadow-primary/20"
+                    >
+                      {dict.nav.signup}
+                    </Link>
+                  </div>
+                )}
+
+                <div className="pt-6 border-t border-border/50 flex flex-col gap-6">
+                   <div className="flex items-center justify-between px-2">
+                      <span className="text-[10px] font-black uppercase tracking-[0.3em] text-foreground/30">Preferences</span>
+                      <div className="flex gap-2">
+                         {['en', 'id'].map((lang) => (
+                           <button
+                             key={lang}
+                             onClick={() => setLanguage(lang as any)}
+                             className={`px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${language === lang ? 'bg-primary text-white' : 'bg-foreground/[0.03] text-foreground/40'}`}
+                           >
+                             {lang}
+                           </button>
+                         ))}
+                      </div>
+                   </div>
+
+                   <div className="flex items-center justify-between gap-4">
+                      <button
+                        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                        className="flex-grow flex items-center justify-center gap-3 p-4 bg-foreground/[0.03] rounded-[1.5rem] text-foreground/60 font-bold text-xs"
+                      >
+                        {theme === "dark" ? <><Sun className="w-4 h-4 text-accent" /> Light Mode</> : <><Moon className="w-4 h-4" /> Dark Mode</>}
+                      </button>
+                      
+                      {session && (
+                        <button
+                          onClick={async () => {
+                            await signOut({ redirect: false });
+                            window.location.href = "/";
+                          }}
+                          className="p-4 text-red-500 bg-red-500/10 rounded-[1.5rem]"
+                        >
+                          <LogOut className="w-5 h-5" />
+                        </button>
+                      )}
+                   </div>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </nav>

@@ -96,10 +96,10 @@ export function PerformanceChart({
         ))}
       </svg>
 
-      <div className="flex justify-between mt-6 px-2">
+      <div className="flex justify-between mt-6 px-2 overflow-x-auto no-scrollbar gap-4 sm:gap-0">
         {data.map((d, i) => (
-          <div key={i} className="flex flex-col items-center">
-            <span className="text-[9px] font-black uppercase tracking-widest text-foreground/20 mb-1">
+          <div key={i} className="flex flex-col items-center shrink-0 min-w-[50px] sm:min-w-0">
+            <span className="text-[9px] font-black uppercase tracking-widest text-foreground/20 mb-1 whitespace-nowrap">
               {d.label}
             </span>
             <span className="text-[10px] font-bold text-foreground/40">{d.value}%</span>

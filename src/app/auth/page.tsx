@@ -117,12 +117,12 @@ function AuthContent() {
     <div className="min-h-[calc(100vh-80px)] bg-background flex items-center justify-center p-4">
       <motion.div
         layout
-        className={`w-full max-w-5xl bg-card rounded-[2.5rem] shadow-premium border border-border overflow-hidden flex flex-col md:flex-row min-h-[600px] relative transition-all duration-500 ease-in-out ${isLogin ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+        className={`w-full max-w-5xl bg-card rounded-[2.5rem] shadow-premium border border-border overflow-hidden flex flex-col md:flex-row min-h-[500px] md:min-h-[600px] relative transition-all duration-500 ease-in-out ${isLogin ? 'md:flex-row' : 'md:flex-row-reverse'}`}
       >
         {/* Visual Section */}
         <motion.div
           layout
-          className="w-full md:w-1/2 bg-gradient-to-br from-primary via-secondary/80 to-primary relative p-12 flex flex-col justify-between text-white overflow-hidden shadow-inner"
+          className="w-full md:w-1/2 bg-gradient-to-br from-primary via-secondary/80 to-primary relative p-8 sm:p-12 flex flex-col justify-between text-white overflow-hidden shadow-inner"
         >
           <div className="absolute top-0 right-0 w-80 h-80 bg-white/10 rounded-full -mr-20 -mt-20 blur-[100px] animate-pulse"></div>
           <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
@@ -161,7 +161,7 @@ function AuthContent() {
         </motion.div>
 
         {/* Form Section */}
-        <motion.div layout className="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center bg-card">
+        <motion.div layout className="w-full md:w-1/2 p-6 sm:p-10 md:p-16 flex flex-col justify-center bg-card">
           <div className="max-w-md mx-auto w-full">
             <div className="mb-10 text-center md:text-left">
               <h3 className="text-3xl font-black text-foreground mb-2">
