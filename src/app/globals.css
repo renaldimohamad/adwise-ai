@@ -137,6 +137,10 @@ select {
   50% { transform: translateY(-10px); }
 }
 
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+
 .float {
   animation: float 6s ease-in-out infinite;
 }

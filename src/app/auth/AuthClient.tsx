@@ -62,6 +62,11 @@ function AuthContent() {
     defaultValues: { email: "", password: "", confirmPassword: "" },
   });
 
+  // Synchronize state with URL search params
+  useEffect(() => {
+    const mode = searchParams.get("mode");
+    setIsLogin(mode !== "register");
+  }, [searchParams]);
   const onLogin = async (data: LoginFormValues) => {
     setLoading(true);
     try {
@@ -148,14 +153,22 @@ function AuthContent() {
             </p>
           </motion.div>
 
-          <div className="z-10 grid grid-cols-2 gap-4">
-            <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10">
-              <ShieldCheck className="w-5 h-5 text-emerald-400" />
-              <div className="text-[10px] font-black uppercase tracking-widest leading-none whitespace-pre-line">{dict.common.secureProtocols.replace(" ", "\n")}</div>
+          <div className="z-10 grid grid-cols-2 gap-3 sm:gap-4 mt-8 sm:mt-12">
+            <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md py-3 px-4 sm:px-6 rounded-2xl border border-white/10 hover:bg-white/15 transition-all group/badge">
+              <div className="w-8 h-8 rounded-lg bg-emerald-400/20 flex items-center justify-center shrink-0 group-hover/badge:scale-110 transition-transform">
+                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              </div>
+              <div className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.15em] leading-tight text-white/90">
+                {dict.common.secureProtocols}
+              </div>
             </div>
-            <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10">
-              <Sparkles className="w-5 h-5 text-accent" />
-              <div className="text-[10px] font-black uppercase tracking-widest leading-none whitespace-pre-line">{dict.common.neuralEngine.replace(" ", "\n")}</div>
+            <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md py-3 px-4 sm:px-6 rounded-2xl border border-white/10 hover:bg-white/15 transition-all group/badge">
+              <div className="w-8 h-8 rounded-lg bg-accent/20 flex items-center justify-center shrink-0 group-hover/badge:scale-110 transition-transform">
+                <Sparkles className="w-4 h-4 text-accent" />
+              </div>
+              <div className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.15em] leading-tight text-white/90">
+                {dict.common.neuralEngine}
+              </div>
             </div>
           </div>
         </motion.div>

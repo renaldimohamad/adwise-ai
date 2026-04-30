@@ -59,7 +59,7 @@ export function Navbar() {
           >
             <BarChart3 className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
           </motion.div>
-          <span className="font-bold text-base xs:text-lg sm:text-xl tracking-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent truncate">
+          <span className="font-bold text-sm xs:text-base sm:text-xl tracking-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent truncate max-w-[100px] xs:max-w-none">
             {dict.common.brand}
           </span>
         </Link>
@@ -86,11 +86,11 @@ export function Navbar() {
             <div className="relative hidden xs:block">
               <button
                 onClick={() => setLangOpen(!langOpen)}
-                className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 text-foreground/80 hover:text-primary hover:bg-primary/10 rounded-xl transition-all"
+                className="flex items-center gap-1 px-1.5 sm:px-3 py-2 text-foreground/80 hover:text-primary hover:bg-primary/10 rounded-xl transition-all"
               >
-                <Languages className="w-4 h-4" />
-                <span className="text-[10px] sm:text-xs font-black uppercase tracking-widest">{language}</span>
-                <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${langOpen ? "rotate-180" : ""}`} />
+                <Languages className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <span className="text-[9px] sm:text-xs font-black uppercase tracking-widest">{language}</span>
+                <ChevronDown className={`w-2.5 h-2.5 transition-transform duration-200 ${langOpen ? "rotate-180" : ""}`} />
               </button>
 
               <AnimatePresence>
@@ -165,13 +165,13 @@ export function Navbar() {
               </div>
             )}
           </div>
-          
+
           {/* Hamburger Menu Button */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden p-2.5 text-foreground/60 hover:text-primary hover:bg-primary/10 rounded-xl transition-all"
+            className="md:hidden p-1.5 sm:p-2.5 text-foreground/60 hover:text-primary hover:bg-primary/10 rounded-xl transition-all"
           >
-            {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {menuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
           </button>
         </div>
       </div>
@@ -188,7 +188,7 @@ export function Navbar() {
               onClick={() => setMenuOpen(false)}
               className="fixed inset-0 top-[60px] bg-background/60 backdrop-blur-md z-40 md:hidden"
             />
-            
+
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -200,11 +200,11 @@ export function Navbar() {
                 {session && (
                   <div className="space-y-3">
                     <div className="px-4 py-2 mb-2">
-                       <p className="text-[10px] font-black uppercase tracking-[0.3em] text-foreground/30 mb-1">{dict.common.authenticatedAs}</p>
-                       <p className="text-sm font-bold text-foreground truncate">{session.user.email}</p>
+                      <p className="text-[10px] font-black uppercase tracking-[0.3em] text-foreground/30 mb-1">{dict.common.authenticatedAs}</p>
+                      <p className="text-sm font-bold text-foreground truncate">{session.user.email}</p>
                     </div>
-                    <Link 
-                      href="/dashboard" 
+                    <Link
+                      href="/dashboard"
                       onClick={() => setMenuOpen(false)}
                       className="flex items-center gap-4 p-5 rounded-[1.5rem] bg-foreground/[0.03] hover:bg-primary/10 text-foreground group transition-all"
                     >
@@ -213,8 +213,8 @@ export function Navbar() {
                       </div>
                       <span className="font-black uppercase tracking-widest text-[11px]">{dict.nav.dashboard}</span>
                     </Link>
-                    <Link 
-                      href="/history" 
+                    <Link
+                      href="/history"
                       onClick={() => setMenuOpen(false)}
                       className="flex items-center gap-4 p-5 rounded-[1.5rem] bg-foreground/[0.03] hover:bg-primary/10 text-foreground group transition-all"
                     >
@@ -225,18 +225,18 @@ export function Navbar() {
                     </Link>
                   </div>
                 )}
-                
+
                 {!session && (
                   <div className="grid grid-cols-1 gap-3">
-                    <Link 
-                      href="/auth" 
+                    <Link
+                      href="/auth"
                       onClick={() => setMenuOpen(false)}
                       className="flex items-center justify-center p-5 rounded-[1.5rem] bg-foreground/[0.03] text-foreground font-black uppercase tracking-[0.2em] text-[11px]"
                     >
                       {dict.nav.login}
                     </Link>
-                    <Link 
-                      href="/auth?mode=register" 
+                    <Link
+                      href="/auth?mode=register"
                       onClick={() => setMenuOpen(false)}
                       className="flex items-center justify-center p-5 rounded-[1.5rem] bg-primary text-white font-black uppercase tracking-[0.2em] text-[11px] shadow-lg shadow-primary/20"
                     >
@@ -246,41 +246,41 @@ export function Navbar() {
                 )}
 
                 <div className="pt-6 border-t border-border/50 flex flex-col gap-6">
-                   <div className="flex items-center justify-between px-2">
-                      <span className="text-[10px] font-black uppercase tracking-[0.3em] text-foreground/30">{dict.common.preferences}</span>
-                      <div className="flex gap-2">
-                         {['en', 'id'].map((lang) => (
-                           <button
-                             key={lang}
-                             onClick={() => setLanguage(lang as any)}
-                             className={`px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${language === lang ? 'bg-primary text-white' : 'bg-foreground/[0.03] text-foreground/40'}`}
-                           >
-                             {lang}
-                           </button>
-                         ))}
-                      </div>
-                   </div>
-
-                   <div className="flex items-center justify-between gap-4">
-                      <button
-                        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                        className="flex-grow flex items-center justify-center gap-3 p-4 bg-foreground/[0.03] rounded-[1.5rem] text-foreground/60 font-bold text-xs"
-                      >
-                        {theme === "dark" ? <><Sun className="w-4 h-4 text-accent" /> {dict.common.lightMode}</> : <><Moon className="w-4 h-4" /> {dict.common.darkMode}</>}
-                      </button>
-                      
-                      {session && (
+                  <div className="flex items-center justify-between px-2">
+                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-foreground/30">{dict.common.preferences}</span>
+                    <div className="flex gap-2">
+                      {['en', 'id'].map((lang) => (
                         <button
-                          onClick={async () => {
-                            await signOut({ redirect: false });
-                            window.location.href = "/";
-                          }}
-                          className="p-4 text-red-500 bg-red-500/10 rounded-[1.5rem]"
+                          key={lang}
+                          onClick={() => setLanguage(lang as any)}
+                          className={`px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${language === lang ? 'bg-primary text-white' : 'bg-foreground/[0.03] text-foreground/40'}`}
                         >
-                          <LogOut className="w-5 h-5" />
+                          {lang}
                         </button>
-                      )}
-                   </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between gap-4">
+                    <button
+                      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                      className="flex-grow flex items-center justify-center gap-3 p-4 bg-foreground/[0.03] rounded-[1.5rem] text-foreground/60 font-bold text-xs"
+                    >
+                      {theme === "dark" ? <><Sun className="w-4 h-4 text-accent" /> {dict.common.lightMode}</> : <><Moon className="w-4 h-4" /> {dict.common.darkMode}</>}
+                    </button>
+
+                    {session && (
+                      <button
+                        onClick={async () => {
+                          await signOut({ redirect: false });
+                          window.location.href = "/";
+                        }}
+                        className="p-4 text-red-500 bg-red-500/10 rounded-[1.5rem]"
+                      >
+                        <LogOut className="w-5 h-5" />
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             </motion.div>

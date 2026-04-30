@@ -158,24 +158,24 @@ export default function DashboardClient() {
   ];
 
   return (
-    <div className="relative min-h-screen pb-20">
+    <div className="relative min-h-screen pb-12 sm:pb-20 overflow-x-hidden">
       {/* Premium Background Elements */}
-      <div className="mesh-bg" />
-      <div className="mesh-grid shadow-[inset_0_0_100px_rgba(0,0,0,0.5)]" />
+      <div className="mesh-bg pointer-events-none" />
+      <div className="mesh-grid shadow-[inset_0_0_100px_rgba(0,0,0,0.5)] pointer-events-none" />
 
       {/* Decorative Beams */}
       <div className="beam left-[10%] top-[-100px] opacity-10" />
       <div className="beam left-[60%] top-[-50px] opacity-20 [animation-delay:2s]" />
       <div className="beam left-[90%] top-[-80px] opacity-10 [animation-delay:4s]" />
 
-      <div className="px-3 xs:px-4 sm:px-6 pt-24 xs:pt-32 max-w-7xl mx-auto grid lg:grid-cols-[380px_1fr] gap-12 relative z-10">
+      <div className="px-3 xs:px-4 sm:px-6 pt-12 xs:pt-16 sm:pt-24 max-w-7xl mx-auto flex flex-col lg:grid lg:grid-cols-[400px_1fr] gap-8 xs:gap-12 relative z-10">
         {/* Left Column: Input Form (Fixed Style) */}
         <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="h-fit lg:sticky lg:top-32"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="h-fit lg:sticky lg:top-32 w-full max-w-xl mx-auto lg:mx-0"
         >
-          <div className="premium-card p-5 xs:p-6 sm:p-10 rounded-[2rem] xs:rounded-[2.5rem] sm:rounded-[3rem] shadow-2xl relative overflow-hidden group border-white/10 dark:border-white/5 text-left">
+          <div className="premium-card p-6 xs:p-8 sm:p-10 rounded-[2.5rem] sm:rounded-[3rem] shadow-2xl relative overflow-hidden group border-white/10 dark:border-white/5 text-left">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-primary/10 transition-all duration-700" />
 
             <div className="flex items-center gap-4 sm:gap-5 mb-8 xs:mb-10">
@@ -264,7 +264,7 @@ export default function DashboardClient() {
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
-                className="premium-card p-8 sm:p-16 md:p-20 h-full flex flex-col items-center justify-center text-center rounded-[3.5rem] border-white/10 dark:border-white/5 group"
+                className="premium-card p-6 xs:p-10 sm:p-16 md:p-20 h-full flex flex-col items-center justify-center text-center rounded-[2.5rem] sm:rounded-[3.5rem] border-white/10 dark:border-white/5 group"
               >
                 <div className="relative mb-8 xs:mb-12">
                   <div className="absolute inset-0 bg-primary/20 blur-[50px] rounded-full animate-pulse" />
@@ -322,7 +322,7 @@ export default function DashboardClient() {
                 className="space-y-8"
               >
                 {/* Condensed Header Section */}
-                <div className="relative group overflow-hidden glass rounded-[2rem] xs:rounded-[2.5rem] sm:rounded-[3rem] p-5 sm:p-8 lg:p-12 border-white/20 dark:border-white/10 shadow-premium">
+                <div className="relative group overflow-hidden glass rounded-[2.5rem] sm:rounded-[3rem] p-6 xs:p-8 sm:p-10 lg:p-12 border-white/20 dark:border-white/10 shadow-premium">
                   <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 blur-[130px] rounded-full -mr-64 -mt-64 group-hover:bg-primary/20 transition-all duration-1000" />
                   <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8 xs:gap-12">
                     <div className="space-y-4 max-w-xl text-left">
@@ -330,7 +330,7 @@ export default function DashboardClient() {
                         <Sparkles className="w-3 h-3 xs:w-3.5 h-3.5" />
                         {dict.dashboard.aiVerified}
                       </div>
-                      <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-6xl font-black text-foreground tracking-tighter leading-none truncate pb-2">
+                      <h2 className="text-xl xs:text-2xl sm:text-3xl lg:text-6xl font-black text-foreground tracking-tighter leading-none truncate pb-2">
                         {result.name}
                       </h2>
                       <p className="text-base xs:text-lg sm:text-xl font-medium text-foreground/50 leading-relaxed italic border-l-2 border-primary/20 pl-4 xs:pl-6 line-clamp-2">

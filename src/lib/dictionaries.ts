@@ -148,6 +148,8 @@ export const en = {
     bottlenecksSubtitle: "High-Priority Concerns",
     roadmapTitle: "Optimization Roadmap",
     roadmapSubtitle: "Next-Level Strategy",
+    filterEmptyTitle: "No Matches Found",
+    filterEmptyDesc: "Your search or filter criteria didn't match any neural records. Try adjusting your parameters.",
   }
 };
 
@@ -299,5 +301,7 @@ export const id: Dictionary = {
     bottlenecksSubtitle: "Masalah Prioritas Tinggi",
     roadmapTitle: "Peta Jalan Optimasi",
     roadmapSubtitle: "Strategi Tingkat Lanjut",
+    filterEmptyTitle: "Tidak Ada Hasil",
+    filterEmptyDesc: "Kriteria pencarian atau filter Anda tidak cocok dengan catatan neural apa pun. Coba sesuaikan parameter Anda.",
   }
 };

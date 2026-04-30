@@ -14,8 +14,8 @@ export const metadata: Metadata = {
   description: "AI-powered advertising campaign analysis and optimization advisor. Eliminate guesswork with enterprise-grade neural insights.",
   keywords: ["Ads Optimization", "AI Ads Advisor", "Campaign Analysis", "Digital Marketing AI", "AdWise AI"],
   icons: {
-    icon: "/favicon.png",
-    apple: "/favicon.png",
+    icon: "/favicon.ico",
+    apple: "/favicon.ico",
   },
   openGraph: {
     title: "AdWise AI - Advanced Ads Optimization Advisor",

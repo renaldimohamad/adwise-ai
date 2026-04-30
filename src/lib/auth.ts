@@ -9,7 +9,7 @@ export const authOptions: NextAuthOptions = {
     strategy: "jwt",
   },
   pages: {
-    signIn: "/login",
+    signIn: "/auth",
   },
   providers: [
     CredentialsProvider({
@@ -67,9 +67,10 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       if (token && session.user) {
-        session.user.id = token.id as string;
+        (session.user as any).id = token.id as string;
       }
       return session;
     },
   },
+  debug: process.env.NODE_ENV === "development",
 };
