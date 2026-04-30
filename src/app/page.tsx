@@ -4,9 +4,11 @@ import Link from "next/link";
 import { ArrowRight, BarChart3, TrendingUp, Zap, Sparkles } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { motion } from "framer-motion";
+import { useSession } from "next-auth/react";
 
 export default function Home() {
-  const { dict } = useLanguage();
+  const { dict, language } = useLanguage();
+  const { data: session } = useSession();
 
   return (
     <div className="relative overflow-hidden pt-20">
@@ -56,18 +58,30 @@ export default function Home() {
             transition={{ delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-5 justify-center items-center"
           >
-            <Link
-              href="/auth?mode=register"
-              className="flex items-center gap-3 bg-primary text-white px-10 py-5 rounded-2xl font-bold hover:brightness-110 transition-all hover:scale-[1.02] shadow-[0_20px_40px_-12px_rgba(var(--primary-rgb),0.35)] w-full sm:w-auto justify-center group"
-            >
-              {dict.hero.ctaPrimary} <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <Link
-              href="/auth"
-              className="flex items-center gap-2 bg-card text-foreground border border-border px-10 py-5 rounded-2xl font-bold hover:bg-input transition-all w-full sm:w-auto justify-center shadow-premium"
-            >
-              {dict.hero.ctaSecondary}
-            </Link>
+            {session ? (
+              <Link
+                href="/dashboard"
+                className="flex items-center gap-3 bg-primary text-white px-12 py-5 rounded-2xl font-bold hover:brightness-110 transition-all hover:scale-[1.02] shadow-[0_20px_40px_-12px_rgba(var(--primary-rgb),0.35)] w-full sm:w-auto justify-center group"
+              >
+                {language === 'id' ? 'Kembali ke Dasbor' : 'Back to Dashboard'} 
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            ) : (
+              <>
+                <Link
+                  href="/auth?mode=register"
+                  className="flex items-center gap-3 bg-primary text-white px-10 py-5 rounded-2xl font-bold hover:brightness-110 transition-all hover:scale-[1.02] shadow-[0_20px_40px_-12px_rgba(var(--primary-rgb),0.35)] w-full sm:w-auto justify-center group"
+                >
+                  {dict.hero.ctaPrimary} <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <Link
+                  href="/auth"
+                  className="flex items-center gap-2 bg-card text-foreground border border-border px-10 py-5 rounded-2xl font-bold hover:bg-input transition-all w-full sm:w-auto justify-center shadow-premium"
+                >
+                  {dict.hero.ctaSecondary}
+                </Link>
+              </>
+            )}
           </motion.div>
         </section>
 

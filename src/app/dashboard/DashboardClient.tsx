@@ -367,29 +367,29 @@ export default function DashboardClient() {
                           <span className="p-1.5 border border-current rounded-lg">{item.icon}</span>
                         </div>
                         <div className="flex items-end gap-2">
-                           <div className="text-4xl sm:text-5xl font-black tracking-tighter tabular-nums group-hover:scale-105 transition-transform duration-500 origin-left">{item.value}</div>
-                           <div className="mb-2 w-2 h-2 rounded-full bg-current animate-pulse" />
+                          <div className="text-4xl sm:text-5xl font-black tracking-tighter tabular-nums group-hover:scale-105 transition-transform duration-500 origin-left">{item.value}</div>
+                          <div className="mb-2 w-2 h-2 rounded-full bg-current animate-pulse" />
                         </div>
                         <div className="space-y-2">
-                           <div className="h-1.5 w-full bg-current/10 rounded-full overflow-hidden">
-                              <motion.div 
-                                initial={{ width: 0 }}
-                                animate={{ width: "65%" }}
-                                transition={{ duration: 1, delay: 0.5 }}
-                                className="h-full bg-current"
-                              />
-                           </div>
-                           <div className="text-[10px] font-bold opacity-40 uppercase tracking-[0.1em] flex justify-between">
-                              <span>{item.desc}</span>
-                              <span>Optimal Range</span>
-                           </div>
+                          <div className="h-1.5 w-full bg-current/10 rounded-full overflow-hidden">
+                            <motion.div
+                              initial={{ width: 0 }}
+                              animate={{ width: "65%" }}
+                              transition={{ duration: 1, delay: 0.5 }}
+                              className="h-full bg-current"
+                            />
+                          </div>
+                          <div className="text-[10px] font-bold opacity-40 uppercase tracking-[0.1em] flex justify-between">
+                            <span>{item.desc}</span>
+                            <span>Optimal Range</span>
+                          </div>
                         </div>
                       </div>
                       <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-current opacity-5 blur-[40px] group-hover:opacity-10 transition-opacity" />
                     </motion.div>
                   ))}
                 </div>
-                
+
                 {/* Trend Analysis Chart */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -403,13 +403,13 @@ export default function DashboardClient() {
                       <p className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground/30">Predicted scaling potential</p>
                     </div>
                     <div className="flex gap-2">
-                       <span className="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-500 text-[10px] font-black">
-                         <TrendingUp className="w-3 h-3" /> +12.5%
-                       </span>
+                      <span className="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-500 text-[10px] font-black">
+                        <TrendingUp className="w-3 h-3" /> +12.5%
+                      </span>
                     </div>
                   </div>
-                  
-                  <PerformanceChart 
+
+                  <PerformanceChart
                     data={[
                       { label: "Phase 1", value: 30 },
                       { label: "Phase 2", value: 45 },
