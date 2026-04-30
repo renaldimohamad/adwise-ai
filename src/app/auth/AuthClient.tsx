@@ -228,7 +228,7 @@ function AuthContent() {
                 {loading ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    <span>{dict.authPage.processing}</span>
+                    <span>{dict.common.processing}</span>
                   </>
                 ) : (
                   <>
