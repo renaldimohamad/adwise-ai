@@ -151,11 +151,11 @@ function AuthContent() {
           <div className="z-10 grid grid-cols-2 gap-4">
             <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10">
               <ShieldCheck className="w-5 h-5 text-emerald-400" />
-              <div className="text-[10px] font-black uppercase tracking-widest leading-none whitespace-pre-line">{dict.authPage.secureProtocols.replace(" ", "\n")}</div>
+              <div className="text-[10px] font-black uppercase tracking-widest leading-none whitespace-pre-line">{dict.common.secureProtocols.replace(" ", "\n")}</div>
             </div>
             <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10">
               <Sparkles className="w-5 h-5 text-accent" />
-              <div className="text-[10px] font-black uppercase tracking-widest leading-none whitespace-pre-line">{dict.authPage.neuralEngine.replace(" ", "\n")}</div>
+              <div className="text-[10px] font-black uppercase tracking-widest leading-none whitespace-pre-line">{dict.common.neuralEngine.replace(" ", "\n")}</div>
             </div>
           </div>
         </motion.div>
