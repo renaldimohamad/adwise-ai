@@ -1,4 +1,10 @@
+import { Metadata } from "next";
 import HistoryDetailClient from "../HistoryDetailClient";
+
+export const metadata: Metadata = {
+  title: "Analysis Detail",
+  description: "Detailed AI analysis and performance metrics for your campaign.",
+};
 
 export default async function HistoryDetailPage({
   params,

@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { 
-  BrainCircuit, 
-  AlertCircle, 
-  CheckCircle2, 
-  TrendingUp, 
-  BarChart, 
+import {
+  BrainCircuit,
+  AlertCircle,
+  CheckCircle2,
+  TrendingUp,
+  BarChart,
   Sparkles,
   ArrowLeft,
   Calendar,
@@ -63,7 +63,7 @@ export default function HistoryDetailClient({ id }: { id: string }) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh]">
         <PremiumSpinner size="lg" />
-        <p className="mt-8 text-primary font-black uppercase tracking-widest text-xs animate-pulse">Retrieving Neural Archive...</p>
+        <p className="mt-8 text-primary font-black uppercase tracking-widest text-xs animate-pulse">{dict.history.retrieving}</p>
       </div>
     );
   }
@@ -71,8 +71,8 @@ export default function HistoryDetailClient({ id }: { id: string }) {
   if (!data) {
     return (
       <div className="text-center py-20">
-        <h2 className="text-3xl font-black text-foreground mb-4">Record Not Found</h2>
-        <Link href="/history" className="text-primary font-bold hover:underline">Back to Archive</Link>
+        <h2 className="text-3xl font-black text-foreground mb-4">{dict.history.notFound}</h2>
+        <Link href="/history" className="text-primary font-bold hover:underline">{dict.history.backToArchive}</Link>
       </div>
     );
   }
@@ -82,11 +82,11 @@ export default function HistoryDetailClient({ id }: { id: string }) {
       {/* Back & Breadcrumb */}
       <Link href="/history" className="inline-flex items-center gap-3 text-foreground/40 hover:text-primary font-black uppercase tracking-widest text-[10px] transition-all group">
         <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-        Back to Archive
+        {dict.history.backToArchive}
       </Link>
 
       {/* Header Analysis Summary (Startup Style) */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="relative group overflow-hidden bg-foreground/[0.03] dark:bg-white/[0.02] border border-border rounded-[3.5rem] p-10 lg:p-14"
@@ -97,7 +97,7 @@ export default function HistoryDetailClient({ id }: { id: string }) {
             <div className="flex flex-wrap gap-3">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-widest">
                 <Layers className="w-3.5 h-3.5" />
-                {data.platform} Intel
+                {data.platform} {dict.history.intel}
               </div>
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-foreground/5 border border-border text-foreground/40 text-[10px] font-black uppercase tracking-widest">
                 <Calendar className="w-3.5 h-3.5" />
@@ -112,13 +112,13 @@ export default function HistoryDetailClient({ id }: { id: string }) {
             </p>
           </div>
           <div className="shrink-0 flex flex-col items-center justify-center p-12 bg-card rounded-[3rem] border border-border shadow-premium">
-            <span className="text-[10px] font-black text-foreground/30 uppercase tracking-[0.25em] mb-4">Neural Score</span>
+            <span className="text-[10px] font-black text-foreground/30 uppercase tracking-[0.25em] mb-4">{dict.history.neuralScore}</span>
             <div className="text-7xl font-black text-primary tracking-tighter">
               {Math.min(100, Math.round((data.ctr * 20) + (data.conversions / data.clicks * 100) || 0))}%
             </div>
             <div className="mt-4 flex items-center gap-2 text-emerald-500 text-[10px] font-black uppercase tracking-widest">
               <TrendingUp className="w-4 h-4" />
-              Verified Analysis
+              {dict.history.verifiedAnalysis}
             </div>
           </div>
         </div>
@@ -127,16 +127,16 @@ export default function HistoryDetailClient({ id }: { id: string }) {
       {/* Metrics Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {[
-          { label: "CTR Performance", value: `${data.ctr.toFixed(2)}%`, icon: <TrendingUp />, color: "text-emerald-500 bg-emerald-500/5" },
-          { label: "Conversion Flow", value: data.conversions, icon: <Sparkles />, color: "text-primary bg-primary/5" },
-          { label: "Cost Per Index", value: `$${data.cpc.toFixed(2)}`, icon: <BarChart />, color: "text-yellow-500 bg-yellow-500/5" },
-          { label: "Burn Rate ($)", value: `$${data.spend.toLocaleString()}`, icon: <TrendingUp />, color: "text-red-500 bg-red-500/5" }
+          { label: dict.history.metrics.ctrPerf, value: `${data.ctr.toFixed(2)}%`, icon: <TrendingUp />, color: "text-emerald-500 bg-emerald-500/5" },
+          { label: dict.history.metrics.convFlow, value: data.conversions, icon: <Sparkles />, color: "text-primary bg-primary/5" },
+          { label: dict.history.metrics.costIndex, value: `$${data.cpc.toFixed(2)}`, icon: <BarChart />, color: "text-yellow-500 bg-yellow-500/5" },
+          { label: dict.history.metrics.burnRate, value: `$${data.spend.toLocaleString()}`, icon: <TrendingUp />, color: "text-red-500 bg-red-500/5" }
         ].map((m, i) => (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: i * 0.1 }}
-            key={i} 
+            key={i}
             className={`p-10 rounded-[3rem] border border-border bg-card shadow-premium relative group hover:-translate-y-1 transition-all duration-500`}
           >
             <div className={`w-12 h-12 ${m.color} rounded-2xl flex items-center justify-center mb-6`}>
@@ -161,8 +161,8 @@ export default function HistoryDetailClient({ id }: { id: string }) {
               <AlertCircle className="w-8 h-8 text-red-500" />
             </div>
             <div>
-              <h3 className="text-3xl font-black tracking-tight">Identified Bottlenecks</h3>
-              <p className="text-foreground/40 font-bold uppercase text-[10px] tracking-widest mt-1">High-Priority Concerns</p>
+              <h3 className="text-3xl font-black tracking-tight">{dict.history.bottlenecksTitle}</h3>
+              <p className="text-foreground/40 font-bold uppercase text-[10px] tracking-widest mt-1">{dict.history.bottlenecksSubtitle}</p>
             </div>
           </div>
           <div className="space-y-6">
@@ -186,8 +186,8 @@ export default function HistoryDetailClient({ id }: { id: string }) {
               <TrendingUp className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h3 className="text-3xl font-black tracking-tight">Optimization Roadmap</h3>
-              <p className="text-white/40 font-bold uppercase text-[10px] tracking-widest mt-1">Next-Level Strategy</p>
+              <h3 className="text-3xl font-black tracking-tight">{dict.history.roadmapTitle}</h3>
+              <p className="text-white/40 font-bold uppercase text-[10px] tracking-widest mt-1">{dict.history.roadmapSubtitle}</p>
             </div>
           </div>
           <div className="space-y-4">

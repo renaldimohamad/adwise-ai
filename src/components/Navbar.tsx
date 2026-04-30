@@ -60,7 +60,7 @@ export function Navbar() {
             <BarChart3 className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
           </motion.div>
           <span className="font-bold text-base xs:text-lg sm:text-xl tracking-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent truncate">
-            AdWise AI
+            {dict.common.brand}
           </span>
         </Link>
 
@@ -200,7 +200,7 @@ export function Navbar() {
                 {session && (
                   <div className="space-y-3">
                     <div className="px-4 py-2 mb-2">
-                       <p className="text-[10px] font-black uppercase tracking-[0.3em] text-foreground/30 mb-1">Authenticated as</p>
+                       <p className="text-[10px] font-black uppercase tracking-[0.3em] text-foreground/30 mb-1">{dict.common.authenticatedAs}</p>
                        <p className="text-sm font-bold text-foreground truncate">{session.user.email}</p>
                     </div>
                     <Link 
@@ -247,7 +247,7 @@ export function Navbar() {
 
                 <div className="pt-6 border-t border-border/50 flex flex-col gap-6">
                    <div className="flex items-center justify-between px-2">
-                      <span className="text-[10px] font-black uppercase tracking-[0.3em] text-foreground/30">Preferences</span>
+                      <span className="text-[10px] font-black uppercase tracking-[0.3em] text-foreground/30">{dict.common.preferences}</span>
                       <div className="flex gap-2">
                          {['en', 'id'].map((lang) => (
                            <button
@@ -266,7 +266,7 @@ export function Navbar() {
                         onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                         className="flex-grow flex items-center justify-center gap-3 p-4 bg-foreground/[0.03] rounded-[1.5rem] text-foreground/60 font-bold text-xs"
                       >
-                        {theme === "dark" ? <><Sun className="w-4 h-4 text-accent" /> Light Mode</> : <><Moon className="w-4 h-4" /> Dark Mode</>}
+                        {theme === "dark" ? <><Sun className="w-4 h-4 text-accent" /> {dict.common.lightMode}</> : <><Moon className="w-4 h-4" /> {dict.common.darkMode}</>}
                       </button>
                       
                       {session && (

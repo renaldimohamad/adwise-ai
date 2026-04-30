@@ -63,7 +63,7 @@ export default function Home() {
                 href="/dashboard"
                 className="flex items-center gap-3 bg-primary text-white px-12 py-5 rounded-2xl font-bold hover:brightness-110 transition-all hover:scale-[1.02] shadow-[0_20px_40px_-12px_rgba(var(--primary-rgb),0.35)] w-full sm:w-auto justify-center group"
               >
-                {language === 'id' ? 'Kembali ke Dasbor' : 'Back to Dashboard'}
+                {dict.hero.backToDashboard}
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             ) : (
@@ -113,9 +113,9 @@ export default function Home() {
               <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
                 <div className="space-y-6">
                   {[
-                    { label: "Cost Per Acquisition (CPA)", value: "$12.40", color: "text-primary", desc: "Target: <$15.00" },
-                    { label: "Cost Per Click (CPC)", value: "$0.85", color: "text-secondary", desc: "Target: <$1.20" },
-                    { label: "Click-Through Rate (CTR)", value: "3.2%", color: "text-accent", desc: "Target: >2.0%" }
+                    { label: "Cost Per Acquisition (CPA)", value: "$12.40", color: "text-primary", desc: language === 'id' ? "Target: <$15.00" : "Target: <$15.00" },
+                    { label: "Cost Per Click (CPC)", value: "$0.85", color: "text-secondary", desc: language === 'id' ? "Target: <$1.20" : "Target: <$1.20" },
+                    { label: "Click-Through Rate (CTR)", value: "3.2%", color: "text-accent", desc: language === 'id' ? "Target: >2.0%" : "Target: >2.0%" }
                   ].map((metric, i) => (
                     <motion.div
                       key={i}
@@ -151,18 +151,18 @@ export default function Home() {
                   </div>
                   <div className="relative z-10 space-y-6">
                     <div className="space-y-1">
-                      <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">Intelligence Synthesis</span>
-                      <h3 className="text-3xl font-black tracking-tight leading-none">Architecture of <br /> Performance</h3>
+                      <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">{language === 'id' ? 'Sintesis Intelijen' : 'Intelligence Synthesis'}</span>
+                      <h3 className="text-3xl font-black tracking-tight leading-none">{language === 'id' ? 'Arsitektur Performa' : 'Architecture of Performance'}</h3>
                     </div>
                     <p className="text-foreground/40 font-medium leading-relaxed">
-                      AdWise AI doesn&apos;t just show numbers; it interprets the structural relationship between your unit costs and acquisition efficiency.
+                      {language === 'id' ? 'AdWise AI tidak hanya menunjukkan angka; ia menginterpretasikan hubungan struktural antara biaya unit dan efisiensi akuisisi Anda.' : 'AdWise AI doesn\'t just show numbers; it interprets the structural relationship between your unit costs and acquisition efficiency.'}
                     </p>
                     <div className="flex gap-4 pt-4">
                       <div className="px-6 py-3 rounded-2xl bg-primary/10 border border-primary/20 text-primary text-xs font-black">
-                        98% Accuracy
+                        {language === 'id' ? 'Akurasi 98%' : '98% Accuracy'}
                       </div>
                       <div className="px-6 py-3 rounded-2xl bg-secondary/10 border border-secondary/20 text-secondary text-xs font-black">
-                        Real-time
+                        {language === 'id' ? 'Waktu-nyata' : 'Real-time'}
                       </div>
                     </div>
                   </div>

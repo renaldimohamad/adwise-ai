@@ -184,9 +184,9 @@ export default function DashboardClient() {
               </div>
               <div>
                 <h2 className="text-xl xs:text-2xl font-black text-foreground tracking-tighter leading-none">
-                  {dict.dashboard.inputTitle.split(' ')[0]}
+                  {dict.dashboard.inputTitle}
                 </h2>
-                <p className="text-[9px] xs:text-[10px] font-black uppercase tracking-[0.3em] text-foreground/30 mt-1 uppercase">Data ingestion</p>
+                <p className="text-[9px] xs:text-[10px] font-black uppercase tracking-[0.3em] text-foreground/30 mt-1 uppercase">{dict.dashboard.dataIngestion}</p>
               </div>
             </div>
 
@@ -304,7 +304,7 @@ export default function DashboardClient() {
                     <h3 className="text-2xl xs:text-3xl sm:text-4xl font-black text-foreground mb-3 xs:mb-4 tracking-tighter leading-tight">{loadingMessages[msgIndex]}</h3>
                     <p className="text-primary flex items-center justify-center gap-3 text-base xs:text-lg font-black uppercase tracking-[0.2em] opacity-60">
                       <Sparkles className="w-4 h-4 animate-pulse" />
-                      Synthesizing Strategy
+                      {dict.dashboard.synthesizing}
                     </p>
                   </motion.div>
                 </div>
@@ -381,7 +381,7 @@ export default function DashboardClient() {
                           </div>
                           <div className="text-[9px] xs:text-[10px] font-bold opacity-40 uppercase tracking-[0.1em] flex justify-between">
                             <span>{item.desc}</span>
-                            <span>Optimal Range</span>
+                            <span>{dict.common.optimalRange}</span>
                           </div>
                         </div>
                       </div>
@@ -399,8 +399,8 @@ export default function DashboardClient() {
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 xs:mb-10">
                     <div className="text-left">
-                      <h3 className="text-xl xs:text-2xl font-black tracking-tighter">Growth Trajectory</h3>
-                      <p className="text-[9px] xs:text-[10px] font-black uppercase tracking-[0.2em] text-foreground/30">Predicted scaling potential</p>
+                      <h3 className="text-xl xs:text-2xl font-black tracking-tighter">{dict.dashboard.growthTitle}</h3>
+                      <p className="text-[9px] xs:text-[10px] font-black uppercase tracking-[0.2em] text-foreground/30">{dict.dashboard.growthSubtitle}</p>
                     </div>
                     <div className="flex gap-2">
                       <span className="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-500 text-[9px] xs:text-[10px] font-black">
@@ -411,12 +411,12 @@ export default function DashboardClient() {
 
                   <PerformanceChart
                     data={[
-                      { label: "Phase 1", value: 30 },
-                      { label: "Phase 2", value: 45 },
-                      { label: "Phase 3", value: 40 },
-                      { label: "Phase 4", value: 70 },
-                      { label: "Phase 5", value: 85 },
-                      { label: "Phase 6", value: 100 },
+                      { label: language === 'id' ? "Tahap 1" : "Phase 1", value: 30 },
+                      { label: language === 'id' ? "Tahap 2" : "Phase 2", value: 45 },
+                      { label: language === 'id' ? "Tahap 3" : "Phase 3", value: 40 },
+                      { label: language === 'id' ? "Tahap 4" : "Phase 4", value: 70 },
+                      { label: language === 'id' ? "Tahap 5" : "Phase 5", value: 85 },
+                      { label: language === 'id' ? "Tahap 6" : "Phase 6", value: 100 },
                     ]}
                     color="var(--primary)"
                   />

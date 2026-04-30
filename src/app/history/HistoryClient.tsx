@@ -165,7 +165,21 @@ export default function HistoryClient() {
   }
 
   return (
-    <div className="space-y-12">
+    <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 py-16 sm:py-24 min-h-screen relative z-10">
+      <div className="mb-12 sm:mb-20 space-y-6">
+        <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-primary/5 border border-primary/10 text-primary text-[9px] xs:text-[10px] font-black uppercase tracking-[0.3em]">
+          <span className="flex h-1.5 w-1.5 rounded-full bg-primary animate-pulse"></span>
+          {dict.history.archiveBadge}
+        </div>
+        <h1 className="text-4xl xs:text-5xl sm:text-7xl md:text-8xl font-black text-foreground tracking-tighter leading-[0.9]">
+          {dict.history.vaultTitle} <span className="text-transparent bg-clip-text bg-gradient-to-br from-primary to-secondary">{dict.history.vaultSubtitle}</span>
+        </h1>
+        <p className="text-base xs:text-lg sm:text-xl md:text-2xl font-medium text-foreground/40 max-w-2xl leading-relaxed">
+          {dict.history.vaultDesc}
+        </p>
+      </div>
+
+      <div className="space-y-12">
       {/* Search and Filter UI */}
       <div className="flex flex-col md:flex-row gap-6 items-center">
         <div className="relative w-full md:w-96 group">
@@ -174,7 +188,7 @@ export default function HistoryClient() {
           </div>
           <input
             type="text"
-            placeholder={language === 'id' ? "Cari kampanye..." : "Search campaigns..."}
+            placeholder={dict.history.searchPlaceholder}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="w-full bg-card border border-border/50 rounded-[2rem] py-5 pl-14 pr-6 text-sm font-bold focus:outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/5 transition-all shadow-premium"
@@ -188,7 +202,7 @@ export default function HistoryClient() {
               onClick={() => setPlatformFilter(p)}
               className={`px-8 py-3 rounded-[2rem] text-xs font-black uppercase tracking-widest transition-all whitespace-nowrap ${platformFilter === p ? "bg-primary text-white shadow-lg shadow-primary/20" : "hover:bg-foreground/5 text-foreground/40"}`}
             >
-              {p}
+              {p === "All" ? (language === 'id' ? "Semua" : "All") : p}
             </button>
           ))}
         </div>
