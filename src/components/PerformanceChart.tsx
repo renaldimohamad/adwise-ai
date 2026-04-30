@@ -1,6 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { 
+  AreaChart, 
+  Area, 
+  XAxis, 
+  YAxis, 
+  CartesianGrid, 
+  Tooltip, 
+  ResponsiveContainer 
+} from "recharts";
 
 type ChartData = {
   label: string;
@@ -16,96 +25,70 @@ interface PerformanceChartProps {
 export function PerformanceChart({
   data,
   color = "var(--primary)",
-  height = 200
+  height = 250
 }: PerformanceChartProps) {
-  const max = Math.max(...data.map(d => d.value), 1);
-  const points = data.map((d, i) => ({
-    x: (i / (data.length - 1)) * 100,
-    y: 100 - (d.value / max) * 100
+  // Map data to recharts format
+  const chartData = data.map(d => ({
+    name: d.label,
+    value: d.value
   }));
-
-  const pathData = points.reduce((acc, point, i) => {
-    return i === 0
-      ? `M ${point.x},${point.y}`
-      : `${acc} L ${point.x},${point.y}`;
-  }, "");
-
-  const areaData = `${pathData} L 100,100 L 0,100 Z`;
 
   return (
     <div className="w-full relative" style={{ height }}>
-      <svg
-        viewBox="0 0 100 100"
-        className="w-full h-full overflow-visible"
-        preserveAspectRatio="none"
-      >
-        {/* Grid lines */}
-        {[0, 25, 50, 75, 100].map((v) => (
-          <line
-            key={v}
-            x1="0"
-            y1={v}
-            x2="100"
-            y2={v}
-            stroke="currentColor"
-            strokeOpacity="0.05"
-            strokeWidth="0.5"
+      <ResponsiveContainer width="100%" height="100%">
+        <AreaChart
+          data={chartData}
+          margin={{ top: 10, right: 0, left: 0, bottom: 0 }}
+        >
+          <defs>
+            <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor={color} stopOpacity={0.3} />
+              <stop offset="95%" stopColor={color} stopOpacity={0} />
+            </linearGradient>
+          </defs>
+          <CartesianGrid 
+            strokeDasharray="3 3" 
+            vertical={false} 
+            stroke="currentColor" 
+            strokeOpacity={0.05} 
           />
-        ))}
-
-        {/* Area */}
-        <motion.path
-          d={areaData}
-          fill={color}
-          fillOpacity="0.1"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        />
-
-        {/* Line */}
-        <motion.path
-          d={pathData}
-          fill="none"
-          stroke={color}
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 1.5, ease: "easeInOut" }}
-        />
-
-        {/* Data points */}
-        {points.map((p, i) => (
-          <motion.g
-            key={i}
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 1 + i * 0.1 }}
-          >
-            <circle
-              cx={p.x}
-              cy={p.y}
-              r="1.5"
-              fill="white"
-              stroke={color}
-              strokeWidth="0.5"
-            />
-          </motion.g>
-        ))}
-      </svg>
-
-      <div className="flex justify-between mt-6 px-2 overflow-x-auto no-scrollbar gap-4 sm:gap-0">
-        {data.map((d, i) => (
-          <div key={i} className="flex flex-col items-center shrink-0 min-w-[50px] sm:min-w-0">
-            <span className="text-[9px] font-black uppercase tracking-widest text-foreground/20 mb-1 whitespace-nowrap">
-              {d.label}
-            </span>
-            <span className="text-[10px] font-bold text-foreground/40">{d.value}%</span>
-          </div>
-        ))}
-      </div>
+          <XAxis 
+            dataKey="name" 
+            axisLine={false}
+            tickLine={false}
+            tick={{ fill: "currentColor", opacity: 0.2, fontSize: 9, fontWeight: 900 }}
+            dy={10}
+          />
+          <YAxis hide domain={[0, 'dataMax + 10']} />
+          <Tooltip 
+            content={({ active, payload }) => {
+              if (active && payload && payload.length) {
+                return (
+                  <div className="bg-card border border-border/80 backdrop-blur-xl p-4 rounded-2xl shadow-2xl">
+                    <p className="text-[10px] font-black uppercase tracking-widest text-foreground/40 mb-1">
+                      {payload[0].payload.name}
+                    </p>
+                    <p className="text-xl font-black text-primary tracking-tighter">
+                      {payload[0].value}%
+                    </p>
+                  </div>
+                );
+              }
+              return null;
+            }}
+          />
+          <Area
+            type="monotone"
+            dataKey="value"
+            stroke={color}
+            strokeWidth={3}
+            fillOpacity={1}
+            fill="url(#colorValue)"
+            animationDuration={2000}
+            animationEasing="ease-in-out"
+          />
+        </AreaChart>
+      </ResponsiveContainer>
     </div>
   );
 }

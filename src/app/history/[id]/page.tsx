@@ -14,7 +14,7 @@ export default async function HistoryDetailPage({
   const { id } = await params;
 
   return (
-    <main className="pt-32 px-6">
+    <main className="pt-5 lg:pt-32 px-6">
       <HistoryDetailClient id={id} />
     </main>
   );
