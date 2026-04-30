@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   description: "AI-powered advertising campaign analysis and optimization SaaS.",
 };
 
+import { Toaster } from "sonner";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -18,8 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} min-h-screen bg-gray-50 text-gray-900`}>
+      <body className={`${inter.className} min-h-screen bg-neutral-950 text-foreground antialiased`}>
         <Providers>
+          <Toaster position="top-right" richColors closeButton />
           <Navbar />
           <main className="pt-20">
             {children}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -13,113 +13,124 @@ import {
   Sparkles,
   ShieldCheck,
   Zap,
-  ArrowLeft
+  ArrowLeft,
+  Eye,
+  EyeOff
 } from "lucide-react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { Suspense } from "react";
+import { useLanguage } from "@/context/LanguageContext";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { toast } from "sonner";
+import { Input } from "@/components/ui/Input";
+import { Mail, Lock } from "lucide-react";
+
+const loginSchema = z.object({
+  email: z.string().email("Invalid email address"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
+});
+
+const registerSchema = z.object({
+  email: z.string().email("Invalid email address"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
+  confirmPassword: z.string().min(6, "Password must be at least 6 characters"),
+}).refine((data) => data.password === data.confirmPassword, {
+  message: "Passwords do not match",
+  path: ["confirmPassword"],
+});
+
+type LoginFormValues = z.infer<typeof loginSchema>;
+type RegisterFormValues = z.infer<typeof registerSchema>;
 
 function AuthContent() {
+  const { dict } = useLanguage();
   const searchParams = useSearchParams();
   const initialMode = searchParams.get("mode") === "register" ? false : true;
   const [isLogin, setIsLogin] = useState(initialMode);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
-  // Reset error when switching modes
-  useEffect(() => {
-    setError("");
-  }, [isLogin]);
+  const loginForm = useForm<LoginFormValues>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: { email: "", password: "" },
+  });
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const registerForm = useForm<RegisterFormValues>({
+    resolver: zodResolver(registerSchema),
+    defaultValues: { email: "", password: "", confirmPassword: "" },
+  });
+
+  const onLogin = async (data: LoginFormValues) => {
     setLoading(true);
-    setError("");
-
     try {
       const res = await signIn("credentials", {
-        email: email.toLowerCase(),
-        password,
-        callbackUrl: "/dashboard",
+        email: data.email.toLowerCase(),
+        password: data.password,
         redirect: false,
       });
 
       if (res?.error) {
-        setError("Invalid email or password. Please try again.");
-        setLoading(false);
+        toast.error("Invalid credentials. Please try again.");
       } else {
+        toast.success("Welcome back! Redirecting...");
         router.push("/dashboard");
       }
     } catch (err) {
-      setError("An unexpected error occurred.");
+      toast.error("An unexpected error occurred.");
+    } finally {
       setLoading(false);
     }
   };
 
-  const handleRegister = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (password !== confirmPassword) {
-      setError("Passwords do not match.");
-      return;
-    }
-
+  const onRegister = async (data: RegisterFormValues) => {
     setLoading(true);
-    setError("");
-
     try {
       const res = await fetch("/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email: data.email, password: data.password }),
       });
 
       if (res.ok) {
-        // Auto login after success
+        toast.success("Account created! Logging you in...");
         await signIn("credentials", {
-          email: email.toLowerCase(),
-          password,
+          email: data.email.toLowerCase(),
+          password: data.password,
           callbackUrl: "/dashboard",
           redirect: false,
         });
         router.push("/dashboard");
       } else {
-        const data = await res.json();
-        setError(data.message || "Registration failed.");
-        setLoading(false);
+        const errorData = await res.json();
+        toast.error(errorData.message || "Registration failed.");
       }
     } catch (err) {
-      setError("Something went wrong during registration.");
+      toast.error("Something went wrong during registration.");
+    } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4 md:p-8">
-      {/* Desktop Container */}
+    <div className="min-h-[calc(100vh-80px)] bg-background flex items-center justify-center p-4">
       <motion.div
         layout
-        className={`w-full max-w-5xl bg-card rounded-[2.5rem] shadow-premium border border-border overflow-hidden flex flex-col md:flex-row min-h-[650px] relative transition-all duration-500 ease-in-out ${isLogin ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+        className={`w-full max-w-5xl bg-card rounded-[2.5rem] shadow-premium border border-border overflow-hidden flex flex-col md:flex-row min-h-[600px] relative transition-all duration-500 ease-in-out ${isLogin ? 'md:flex-row' : 'md:flex-row-reverse'}`}
       >
-        {/* Visual / Image Section */}
+        {/* Visual Section */}
         <motion.div
           layout
-          className="w-full md:w-1/2 bg-gradient-to-br from-primary via-secondary to-primary dark:from-slate-950 dark:via-indigo-950 dark:to-slate-950 relative p-12 flex flex-col justify-between text-white overflow-hidden shadow-inner"
+          className="w-full md:w-1/2 bg-gradient-to-br from-primary via-secondary/80 to-primary relative p-12 flex flex-col justify-between text-white overflow-hidden shadow-inner"
         >
-          {/* Animated Background Elements - Subtle in Dark Mode */}
-          <div className="absolute top-0 right-0 w-80 h-80 bg-white/10 dark:bg-primary/5 rounded-full -mr-20 -mt-20 blur-[100px] animate-pulse"></div>
-          <div className="absolute bottom-0 left-0 w-80 h-80 bg-black/10 dark:bg-secondary/5 rounded-full -ml-20 -mb-20 blur-[100px]"></div>
-
-          {/* Mesh Texture Overlay */}
-          <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+          <div className="absolute top-0 right-0 w-80 h-80 bg-white/10 rounded-full -mr-20 -mt-20 blur-[100px] animate-pulse"></div>
+          <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
 
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             key={isLogin ? "login-vis" : "reg-vis"}
-            transition={{ delay: 0.2 }}
             className="z-10"
           >
             <Link href="/" className="flex items-center gap-2 font-black text-2xl tracking-tighter mb-12 group">
@@ -129,99 +140,82 @@ function AuthContent() {
               <span>AdWise AI</span>
             </Link>
 
-            <h2 className="text-4xl md:text-5xl font-black leading-[1.1] mb-6 tracking-tight">
-              {isLogin ? "Welcome back to the elite." : "Join the future of advertising."}
+            <h2 className="text-4xl font-black leading-[1.1] mb-6 tracking-tight">
+              {isLogin ? dict.authPage.loginWelcome : dict.authPage.registerWelcome}
             </h2>
             <p className="text-white/70 text-lg font-medium max-w-sm">
-              {isLogin
-                ? "Access your neural dashboard and continue optimizing your high-performance campaigns."
-                : "Create an account today and unlock enterprise-grade AI insights for your business."}
+              {isLogin ? dict.authPage.loginDesc : dict.authPage.registerDesc}
             </p>
           </motion.div>
 
-          <div className="z-10 grid grid-cols-2 gap-6">
-            <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md p-4 rounded-3xl border border-white/10">
-              <ShieldCheck className="w-6 h-6 text-emerald-400" />
-              <div className="text-[10px] font-black uppercase tracking-widest leading-none">Secure<br />Protocols</div>
+          <div className="z-10 grid grid-cols-2 gap-4">
+            <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10">
+              <ShieldCheck className="w-5 h-5 text-emerald-400" />
+              <div className="text-[10px] font-black uppercase tracking-widest leading-none whitespace-pre-line">{dict.authPage.secureProtocols.replace(" ", "\n")}</div>
             </div>
-            <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md p-4 rounded-3xl border border-white/10">
-              <Sparkles className="w-6 h-6 text-accent" />
-              <div className="text-[10px] font-black uppercase tracking-widest leading-none">Neural<br />Engine</div>
+            <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10">
+              <Sparkles className="w-5 h-5 text-accent" />
+              <div className="text-[10px] font-black uppercase tracking-widest leading-none whitespace-pre-line">{dict.authPage.neuralEngine.replace(" ", "\n")}</div>
             </div>
           </div>
         </motion.div>
 
         {/* Form Section */}
-        <motion.div
-          layout
-          className="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center bg-card"
-        >
+        <motion.div layout className="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center bg-card">
           <div className="max-w-md mx-auto w-full">
-            <div className="mb-10">
+            <div className="mb-10 text-center md:text-left">
               <h3 className="text-3xl font-black text-foreground mb-2">
-                {isLogin ? "Neural Access" : "Neural Foundry"}
+                {isLogin ? dict.auth.loginTitle : dict.auth.registerTitle}
               </h3>
-              <p className="text-foreground/50 font-medium italic">
-                {isLogin ? "Authorized credentials required" : "Initiating new user protocol"}
+              <p className="text-foreground/40 font-medium">
+                {isLogin ? dict.auth.loginSubtitle : dict.auth.registerSubtitle}
               </p>
             </div>
 
-            <AnimatePresence mode="wait">
-              {error && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  className="bg-red-500/5 text-red-500 p-4 rounded-2xl text-sm mb-8 border border-red-500/20 font-bold flex items-center gap-3"
-                >
-                  <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-ping"></div>
-                  {error}
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <form
+              onSubmit={isLogin ? loginForm.handleSubmit(onLogin) : registerForm.handleSubmit(onRegister)}
+              className="space-y-5"
+            >
+              <Input
+                label={dict.auth.emailLabel}
+                type="email"
+                icon={<Mail className="w-4 h-4" />}
+                placeholder="agent@company.com"
+                error={isLogin ? loginForm.formState.errors.email?.message : registerForm.formState.errors.email?.message}
+                {...(isLogin ? loginForm.register("email") : registerForm.register("email"))}
+              />
 
-            <form onSubmit={isLogin ? handleLogin : handleRegister} className="space-y-6">
-              <div className="space-y-2">
-                <label className="block text-[10px] font-black text-foreground/40 ml-1 uppercase tracking-[0.2em]">Identification (Email)</label>
-                <div className="relative group">
-                  <input
-                    type="email"
-                    className="w-full px-5 py-4 bg-input border border-border rounded-2xl focus:ring-4 focus:ring-primary/10 focus:border-primary outline-none transition-all placeholder:text-foreground/20 text-foreground font-semibold"
-                    placeholder="agent@company.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label className="block text-[10px] font-black text-foreground/40 ml-1 uppercase tracking-[0.2em]">Access Token (Password)</label>
-                <input
-                  type="password"
-                  className="w-full px-5 py-4 bg-input border border-border rounded-2xl focus:ring-4 focus:ring-primary/10 focus:border-primary outline-none transition-all placeholder:text-foreground/20 text-foreground font-semibold"
+              <div className="relative group">
+                <Input
+                  label={dict.auth.passwordLabel}
+                  type={showPassword ? "text" : "password"}
+                  icon={<Lock className="w-4 h-4" />}
                   placeholder="••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
+                  error={isLogin ? loginForm.formState.errors.password?.message : registerForm.formState.errors.password?.message}
+                  {...(isLogin ? loginForm.register("password") : registerForm.register("password"))}
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-5 top-[44px] text-foreground/20 hover:text-primary transition-colors z-20"
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
               </div>
 
               {!isLogin && (
                 <motion.div
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="space-y-2"
+                  className="relative group"
                 >
-                  <label className="block text-[10px] font-black text-foreground/40 ml-1 uppercase tracking-[0.2em]">Verify Token</label>
-                  <input
-                    type="password"
-                    className="w-full px-5 py-4 bg-input border border-border rounded-2xl focus:ring-4 focus:ring-primary/10 focus:border-primary outline-none transition-all placeholder:text-foreground/20 text-foreground font-semibold"
+                  <Input
+                    label={dict.auth.confirmPasswordLabel}
+                    type={showPassword ? "text" : "password"}
+                    icon={<Lock className="w-4 h-4" />}
                     placeholder="••••••••"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    required
+                    error={registerForm.formState.errors.confirmPassword?.message}
+                    {...registerForm.register("confirmPassword")}
                   />
                 </motion.div>
               )}
@@ -229,46 +223,34 @@ function AuthContent() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-primary text-white py-5 rounded-2xl font-black uppercase tracking-[0.2em] text-xs hover:brightness-110 active:scale-[0.98] transition-all disabled:opacity-50 shadow-glow relative overflow-hidden group mt-4"
+                className="w-full bg-primary text-white py-5 rounded-2xl font-black uppercase tracking-[0.2em] text-xs hover:brightness-110 active:scale-[0.98] transition-all disabled:opacity-50 shadow-glow relative overflow-hidden group mt-4 flex items-center justify-center gap-2"
               >
-                <AnimatePresence mode="wait">
-                  {loading ? (
-                    <motion.div
-                      key="loading"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="flex items-center justify-center gap-2"
-                    >
-                      <Loader2 className="w-5 h-5 animate-spin" />
-                      <span>Processing...</span>
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="static"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="flex items-center justify-center gap-2"
-                    >
-                      {isLogin ? "Authenticate" : "Initialize Account"}
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {loading ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>{dict.authPage.processing}</span>
+                  </>
+                ) : (
+                  <>
+                    {isLogin ? dict.auth.btnAuthenticate : dict.auth.btnInitialize}
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </>
+                )}
               </button>
             </form>
 
             <div className="mt-12 text-center">
               <p className="text-sm font-medium text-foreground/40 mb-4">
-                {isLogin ? "No access key?" : "System identity already exists?"}
+                {isLogin ? dict.auth.noAccount : dict.auth.hasAccount}
               </p>
               <button
                 onClick={() => setIsLogin(!isLogin)}
                 className="flex items-center gap-2 mx-auto text-primary font-black uppercase tracking-widest text-[11px] hover:text-secondary transition-all"
               >
                 {isLogin ? (
-                  <>Create Foundry Account <CheckCircle2 className="w-4 h-4" /></>
+                  <>{dict.auth.switchRegister} <CheckCircle2 className="w-4 h-4" /></>
                 ) : (
-                  <><ArrowLeft className="w-4 h-4" /> Back to Authentication</>
+                  <><ArrowLeft className="w-4 h-4" /> {dict.auth.switchLogin}</>
                 )}
               </button>
             </div>
@@ -278,6 +260,7 @@ function AuthContent() {
     </div>
   );
 }
+
 
 export default function AuthPage() {
   return (

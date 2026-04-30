@@ -7,56 +7,134 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
-  --color-ring: var(--ring);
   
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;
   --radius-3xl: 2rem;
-  
-  --shadow-premium: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
-  --shadow-glow: 0 0 20px rgba(var(--primary-rgb, 79, 70, 229), 0.15);
 }
 
 :root {
-  --primary-rgb: 79, 70, 229;
-  --background: #fcfdfe;
-  --foreground: #020617;
-  --primary: #4f46e5;
-  --secondary: #7c3aed;
-  --accent: #f59e0b;
+  --primary-rgb: 99, 102, 241;
+  --background: #ffffff;
+  --foreground: #000000;
+  --primary: #6366f1;
+  --secondary: #a855f7;
+  --accent: #f43f5e;
   --card: #ffffff;
-  --card-foreground: #020617;
   --border: #f1f5f9;
   --input: #f8fafc;
-  --ring: rgba(79, 70, 229, 0.2);
 }
 
 .dark {
-  --primary-rgb: 129, 140, 248;
-  --background: #020617;
-  --foreground: #f8fafc;
-  --primary: #818cf8;
-  --secondary: #a78bfa;
-  --accent: #fbbf24;
-  --card: #0f172a;
-  --card-foreground: #f8fafc;
-  --border: #1e293b;
-  --input: #1e293b;
-  --ring: rgba(129, 140, 248, 0.3);
+  --primary-rgb: 99, 102, 241;
+  --background: #000000;
+  --foreground: #ffffff;
+  --primary: #6366f1;
+  --secondary: #a855f7;
+  --accent: #f43f5e;
+  --card: #0a0a0a;
+  --border: #1f1f1f;
+  --input: #1f1f1f;
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
-  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  @apply bg-background text-foreground antialiased selection:bg-primary/30;
+  font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+  -webkit-tap-highlight-color: transparent;
+}
+
+button, 
+a,
+[role="button"],
+input[type="submit"],
+input[type="button"],
+select {
+  cursor: pointer;
 }
 
 @layer utilities {
   .glass {
-    @apply bg-white/70 dark:bg-slate-950/70 backdrop-blur-xl border-b border-border;
+    @apply bg-white/[0.03] dark:bg-black/[0.03] backdrop-blur-xl border border-white/[0.05] dark:border-white/[0.05];
   }
+  
+  .premium-card {
+    @apply bg-card border border-border shadow-[0_20px_60px_-20px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_60px_-20px_rgba(0,0,0,0.5)];
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-br from-foreground via-foreground to-foreground/40 bg-clip-text text-transparent;
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 8s ease infinite;
+  }
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Mesh Background */
+.mesh-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--background);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(var(--primary-rgb), 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(244, 63, 94, 0.05) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(var(--primary-rgb), 0.05) 0px, transparent 50%);
+  filter: blur(60px);
+}
+
+.mesh-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(to right, rgba(128,128,128,0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(128,128,128,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(circle at 50% 50%, black, transparent 80%);
+}
+
+@keyframes beam {
+  0% { transform: translateY(-100%) translateX(-100%) rotate(45deg); opacity: 0; }
+  20% { opacity: 0.5; }
+  80% { opacity: 0.5; }
+  100% { transform: translateY(200%) translateX(200%) rotate(45deg); opacity: 0; }
+}
+
+.beam {
+  position: absolute;
+  width: 1px;
+  height: 300px;
+  background: linear-gradient(to bottom, transparent, rgba(128,128,128,0.1), transparent);
+  animation: beam 8s infinite linear;
+}
+
+/* Custom Shadows */
+.shadow-premium {
+  box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.1);
+}
+
+.dark .shadow-premium {
+  box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.8);
+}
+
+.shadow-glow {
+  box-shadow: 0 0 40px -10px rgba(var(--primary-rgb), 0.3);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.float {
+  animation: float 6s ease-in-out infinite;
 }

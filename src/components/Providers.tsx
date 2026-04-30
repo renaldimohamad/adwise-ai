@@ -8,7 +8,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <LanguageProvider>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <SessionProvider>{children}</SessionProvider>
+        <SessionProvider refetchInterval={0} refetchOnWindowFocus={false}>
+          {children}
+        </SessionProvider>
       </ThemeProvider>
     </LanguageProvider>
   );
