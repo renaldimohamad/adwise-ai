@@ -168,25 +168,25 @@ export default function DashboardClient() {
       <div className="beam left-[60%] top-[-50px] opacity-20 [animation-delay:2s]" />
       <div className="beam left-[90%] top-[-80px] opacity-10 [animation-delay:4s]" />
 
-      <div className="px-6 pt-32 max-w-7xl mx-auto grid lg:grid-cols-[380px_1fr] gap-12 relative z-10">
+      <div className="px-3 xs:px-4 sm:px-6 pt-24 xs:pt-32 max-w-7xl mx-auto grid lg:grid-cols-[380px_1fr] gap-12 relative z-10">
         {/* Left Column: Input Form (Fixed Style) */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
           className="h-fit lg:sticky lg:top-32"
         >
-          <div className="premium-card p-10 rounded-[3rem] shadow-2xl relative overflow-hidden group border-white/10 dark:border-white/5 text-left">
+          <div className="premium-card p-5 xs:p-6 sm:p-10 rounded-[2rem] xs:rounded-[2.5rem] sm:rounded-[3rem] shadow-2xl relative overflow-hidden group border-white/10 dark:border-white/5 text-left">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-primary/10 transition-all duration-700" />
 
-            <div className="flex items-center gap-5 mb-10">
-              <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-[1.5rem] flex items-center justify-center border border-white/10 shadow-lg group-hover:scale-110 transition-transform">
-                <Database className="w-7 h-7 text-primary" />
+            <div className="flex items-center gap-4 sm:gap-5 mb-8 xs:mb-10">
+              <div className="w-12 h-12 xs:w-14 xs:h-14 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl xs:rounded-[1.5rem] flex items-center justify-center border border-white/10 shadow-lg group-hover:scale-110 transition-transform">
+                <Database className="w-6 h-6 xs:w-7 xs:h-7 text-primary" />
               </div>
               <div>
-                <h2 className="text-2xl font-black text-foreground tracking-tighter leading-none">
+                <h2 className="text-xl xs:text-2xl font-black text-foreground tracking-tighter leading-none">
                   {dict.dashboard.inputTitle.split(' ')[0]}
                 </h2>
-                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-foreground/30 mt-1 uppercase">Data ingestion</p>
+                <p className="text-[9px] xs:text-[10px] font-black uppercase tracking-[0.3em] text-foreground/30 mt-1 uppercase">Data ingestion</p>
               </div>
             </div>
 
@@ -264,18 +264,18 @@ export default function DashboardClient() {
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
-                className="premium-card p-20 h-full flex flex-col items-center justify-center text-center rounded-[3.5rem] border-white/10 dark:border-white/5 group"
+                className="premium-card p-8 sm:p-16 md:p-20 h-full flex flex-col items-center justify-center text-center rounded-[3.5rem] border-white/10 dark:border-white/5 group"
               >
-                <div className="relative mb-12">
+                <div className="relative mb-8 xs:mb-12">
                   <div className="absolute inset-0 bg-primary/20 blur-[50px] rounded-full animate-pulse" />
-                  <div className="relative w-32 h-32 glass rounded-[2.5rem] flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform duration-700">
-                    <BrainCircuit className="w-16 h-16 text-primary float" />
+                  <div className="relative w-24 h-24 xs:w-32 xs:h-32 glass rounded-3xl xs:rounded-[2.5rem] flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform duration-700">
+                    <BrainCircuit className="w-12 h-12 xs:w-16 xs:h-16 text-primary float" />
                   </div>
                 </div>
-                <h3 className="text-5xl font-black text-foreground mb-6 tracking-tighter leading-none">
+                <h3 className="text-3xl xs:text-4xl sm:text-5xl font-black text-foreground mb-4 xs:mb-6 tracking-tighter leading-none">
                   {dict.dashboard.emptyTitle.split(' ')[0]} <br /> {dict.dashboard.emptyTitle.split(' ')[1]}
                 </h3>
-                <p className="text-foreground/40 max-w-sm text-xl font-medium leading-relaxed italic">
+                <p className="text-foreground/40 max-w-sm text-lg sm:text-xl font-medium leading-relaxed italic">
                   &quot;{dict.dashboard.emptyDesc}&quot;
                 </p>
               </motion.div>
@@ -287,12 +287,12 @@ export default function DashboardClient() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="premium-card p-16 h-full min-h-[600px] flex flex-col rounded-[3.5rem] border-white/10 dark:border-white/5"
+                className="premium-card p-6 sm:p-16 h-full min-h-[600px] flex flex-col rounded-[2.5rem] xs:rounded-[3.5rem] border-white/10 dark:border-white/5"
               >
-                <div className="flex flex-col items-center justify-center flex-grow text-center">
-                  <div className="relative mb-12">
+                <div className="flex flex-col items-center justify-center flex-grow text-center px-4">
+                  <div className="relative mb-10 xs:mb-12">
                     <div className="absolute inset-0 bg-primary/30 blur-[60px] rounded-full animate-ping" />
-                    <PremiumSpinner size="lg" />
+                    <PremiumSpinner size="md" />
                   </div>
                   <motion.div
                     key={msgIndex}
@@ -301,9 +301,9 @@ export default function DashboardClient() {
                     exit={{ opacity: 0, y: -15 }}
                     className="max-w-md mx-auto"
                   >
-                    <h3 className="text-4xl font-black text-foreground mb-4 tracking-tighter leading-tight">{loadingMessages[msgIndex]}</h3>
-                    <p className="text-primary flex items-center justify-center gap-3 text-lg font-black uppercase tracking-[0.2em] opacity-60">
-                      <Sparkles className="w-5 h-5 animate-pulse" />
+                    <h3 className="text-2xl xs:text-3xl sm:text-4xl font-black text-foreground mb-3 xs:mb-4 tracking-tighter leading-tight">{loadingMessages[msgIndex]}</h3>
+                    <p className="text-primary flex items-center justify-center gap-3 text-base xs:text-lg font-black uppercase tracking-[0.2em] opacity-60">
+                      <Sparkles className="w-4 h-4 animate-pulse" />
                       Synthesizing Strategy
                     </p>
                   </motion.div>
@@ -322,33 +322,33 @@ export default function DashboardClient() {
                 className="space-y-8"
               >
                 {/* Condensed Header Section */}
-                <div className="relative group overflow-hidden glass rounded-[2.5rem] sm:rounded-[3rem] p-6 sm:p-10 lg:p-12 border-white/20 dark:border-white/10 shadow-premium">
+                <div className="relative group overflow-hidden glass rounded-[2rem] xs:rounded-[2.5rem] sm:rounded-[3rem] p-5 sm:p-8 lg:p-12 border-white/20 dark:border-white/10 shadow-premium">
                   <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 blur-[130px] rounded-full -mr-64 -mt-64 group-hover:bg-primary/20 transition-all duration-1000" />
-                  <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-12">
+                  <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8 xs:gap-12">
                     <div className="space-y-4 max-w-xl text-left">
-                      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-widest shadow-lg">
-                        <Sparkles className="w-3.5 h-3.5" />
+                      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[9px] xs:text-[10px] font-black uppercase tracking-widest shadow-lg">
+                        <Sparkles className="w-3 h-3 xs:w-3.5 h-3.5" />
                         {dict.dashboard.aiVerified}
                       </div>
-                      <h2 className="text-3xl sm:text-4xl lg:text-6xl font-black text-foreground tracking-tighter leading-none truncate pb-2">
+                      <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-6xl font-black text-foreground tracking-tighter leading-none truncate pb-2">
                         {result.name}
                       </h2>
-                      <p className="text-lg sm:text-xl font-medium text-foreground/50 leading-relaxed italic border-l-2 border-primary/20 pl-6 line-clamp-2">
+                      <p className="text-base xs:text-lg sm:text-xl font-medium text-foreground/50 leading-relaxed italic border-l-2 border-primary/20 pl-4 xs:pl-6 line-clamp-2">
                         &quot;{result.analyses[0]?.aiSummary}&quot;
                       </p>
                     </div>
-                    <div className="shrink-0 flex flex-col items-center justify-center p-8 sm:p-10 glass rounded-[2rem] sm:rounded-[2.5rem] shadow-glow shadow-primary/5 border-white/5 min-w-[180px] sm:min-w-[200px]">
-                      <span className="text-[10px] font-black text-foreground/30 uppercase tracking-[0.3em] mb-4">{dict.dashboard.performanceScore}</span>
-                      <div className="text-6xl sm:text-7xl font-black text-primary tracking-tighter relative tabular-nums">
+                    <div className="shrink-0 flex flex-col items-center justify-center p-6 xs:p-8 sm:p-10 glass rounded-[1.5rem] xs:rounded-[2rem] sm:rounded-[2.5rem] shadow-glow shadow-primary/5 border-white/5 min-w-[140px] xs:min-w-[180px] sm:min-w-[200px]">
+                      <span className="text-[9px] xs:text-[10px] font-black text-foreground/30 uppercase tracking-[0.3em] mb-3 xs:mb-4">{dict.dashboard.performanceScore}</span>
+                      <div className="text-5xl xs:text-6xl sm:text-7xl font-black text-primary tracking-tighter relative tabular-nums">
                         {Math.min(100, Math.round((result.ctr * 20) + (result.conversions / (result.clicks || 1) * 100) || 0))}%
-                        <div className="absolute -top-3 -right-3 w-10 h-10 bg-primary/20 blur-xl rounded-full" />
+                        <div className="absolute -top-2 -right-2 xs:-top-3 xs:-right-3 w-8 h-8 xs:w-10 xs:h-10 bg-primary/20 blur-xl rounded-full" />
                       </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Metrics Bento Grid - Perfectly Aligned */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 xs:gap-6">
                   {[
                     { label: dict.dashboard.metrics.ctr, value: `${result.ctr.toFixed(2)}%`, key: 'ctr', icon: <TrendingUp className="w-4 h-4" />, desc: dict.dashboard.metrics.ctrDesc },
                     { label: dict.dashboard.metrics.cpc, value: `$${result.cpc.toFixed(2)}`, key: 'cpc', icon: <DollarSign className="w-4 h-4" />, desc: dict.dashboard.metrics.cpcDesc },
@@ -359,19 +359,19 @@ export default function DashboardClient() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.1 * idx }}
-                      className={`group relative overflow-hidden p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] border transition-all duration-700 hover:-translate-y-1 ${getMetricColor(item.key, (result as any)[item.key])}`}
+                      className={`group relative overflow-hidden p-5 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] border transition-all duration-700 hover:-translate-y-1 ${getMetricColor(item.key, (result as any)[item.key])}`}
                     >
                       <div className="relative z-10 space-y-4 text-left">
                         <div className="flex items-center justify-between opacity-40">
-                          <span className="text-[10px] font-black uppercase tracking-[0.25em]">{item.label}</span>
+                          <span className="text-[9px] xs:text-[10px] font-black uppercase tracking-[0.25em]">{item.label}</span>
                           <span className="p-1.5 border border-current rounded-lg">{item.icon}</span>
                         </div>
                         <div className="flex items-end gap-2">
-                          <div className="text-4xl sm:text-5xl font-black tracking-tighter tabular-nums group-hover:scale-105 transition-transform duration-500 origin-left">{item.value}</div>
-                          <div className="mb-2 w-2 h-2 rounded-full bg-current animate-pulse" />
+                          <div className="text-3xl xs:text-4xl sm:text-5xl font-black tracking-tighter tabular-nums group-hover:scale-105 transition-transform duration-500 origin-left">{item.value}</div>
+                          <div className="mb-2 w-1.5 h-1.5 xs:w-2 xs:h-2 rounded-full bg-current animate-pulse" />
                         </div>
                         <div className="space-y-2">
-                          <div className="h-1.5 w-full bg-current/10 rounded-full overflow-hidden">
+                          <div className="h-1 w-full bg-current/10 rounded-full overflow-hidden">
                             <motion.div
                               initial={{ width: 0 }}
                               animate={{ width: "65%" }}
@@ -379,7 +379,7 @@ export default function DashboardClient() {
                               className="h-full bg-current"
                             />
                           </div>
-                          <div className="text-[10px] font-bold opacity-40 uppercase tracking-[0.1em] flex justify-between">
+                          <div className="text-[9px] xs:text-[10px] font-bold opacity-40 uppercase tracking-[0.1em] flex justify-between">
                             <span>{item.desc}</span>
                             <span>Optimal Range</span>
                           </div>
@@ -395,15 +395,15 @@ export default function DashboardClient() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
-                  className="premium-card p-10 rounded-[3rem] border-white/10 dark:border-white/5 relative overflow-hidden"
+                  className="premium-card p-6 xs:p-8 sm:p-10 rounded-[2.5rem] sm:rounded-[3rem] border-white/10 dark:border-white/5 relative overflow-hidden"
                 >
-                  <div className="flex items-center justify-between mb-10">
-                    <div>
-                      <h3 className="text-2xl font-black tracking-tighter">Growth Trajectory</h3>
-                      <p className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground/30">Predicted scaling potential</p>
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 xs:mb-10">
+                    <div className="text-left">
+                      <h3 className="text-xl xs:text-2xl font-black tracking-tighter">Growth Trajectory</h3>
+                      <p className="text-[9px] xs:text-[10px] font-black uppercase tracking-[0.2em] text-foreground/30">Predicted scaling potential</p>
                     </div>
                     <div className="flex gap-2">
-                      <span className="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-500 text-[10px] font-black">
+                      <span className="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-500 text-[9px] xs:text-[10px] font-black">
                         <TrendingUp className="w-3 h-3" /> +12.5%
                       </span>
                     </div>
@@ -444,7 +444,7 @@ export default function DashboardClient() {
                       {result.analyses[0]?.aiIssues.split('\n').filter(l => l.trim()).map((line, i) => (
                         <div key={i} className="flex gap-4 group p-4 sm:p-5 rounded-[1.5rem] sm:rounded-[2rem] hover:bg-red-500/5 transition-all border border-transparent hover:border-red-500/10 items-start">
                           <div className="w-1.5 h-6 bg-red-500/10 rounded-full group-hover:bg-red-500 transition-colors shrink-0 mt-0.5" />
-                          <p className="text-base sm:text-lg font-bold text-foreground/60 group-hover:text-foreground leading-tight tracking-tight">{line.replace(/^[-*]\s*/, '')}</p>
+                          <p className="text-sm xs:text-base sm:text-lg font-bold text-foreground/60 group-hover:text-foreground leading-tight tracking-tight">{line.replace(/^[-*]\s*/, '')}</p>
                         </div>
                       ))}
                     </div>
@@ -463,18 +463,18 @@ export default function DashboardClient() {
                         <TrendingUp className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <h3 className="text-xl sm:text-2xl font-black tracking-tighter">{dict.dashboard.actionsTitle}</h3>
-                        <p className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-white/40">{dict.dashboard.actionsSubtitle}</p>
+                        <h3 className="text-lg xs:text-xl sm:text-2xl font-black tracking-tighter">{dict.dashboard.actionsTitle}</h3>
+                        <p className="text-[8px] xs:text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-white/40">{dict.dashboard.actionsSubtitle}</p>
                       </div>
                     </div>
-                    <div className="space-y-4 relative z-10 flex-grow">
+                    <div className="space-y-3 xs:space-y-4 relative z-10 flex-grow">
                       {result.analyses[0]?.aiRecommendations.split('\n').filter(l => l.trim().length > 0).map((line, i) => (
                         <motion.div
                           key={i}
-                          className="flex gap-4 bg-white/10 p-5 sm:p-6 rounded-[1.5rem] sm:rounded-[2rem] border border-white/10 hover:bg-white/15 transition-all group items-start"
+                          className="flex gap-4 bg-white/10 p-4 xs:p-5 sm:p-6 rounded-[1.5rem] sm:rounded-[2rem] border border-white/10 hover:bg-white/15 transition-all group items-start"
                         >
-                          <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
-                          <span className="text-base sm:text-lg font-bold leading-tight tracking-tight">{line.replace(/^[-*]\s*/, '').replace(/^\d+\.\s*/, '')}</span>
+                          <CheckCircle2 className="w-4 h-4 xs:w-5 xs:h-5 text-emerald-400 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                          <span className="text-sm xs:text-base sm:text-lg font-bold leading-tight tracking-tight">{line.replace(/^[-*]\s*/, '').replace(/^\d+\.\s*/, '')}</span>
                         </motion.div>
                       ))}
                     </div>

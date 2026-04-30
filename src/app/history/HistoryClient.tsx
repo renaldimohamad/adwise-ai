@@ -149,15 +149,15 @@ export default function HistoryClient() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-card border border-border rounded-[2.5rem] p-16 text-center shadow-premium max-w-2xl mx-auto mt-12 overflow-hidden relative group"
+        className="bg-card border border-border rounded-[2.5rem] p-8 sm:p-16 text-center shadow-premium max-w-2xl mx-auto mt-12 overflow-hidden relative group"
       >
         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-[100px] transition-all duration-1000 group-hover:bg-primary/10" />
         <div className="w-24 h-24 bg-primary/10 text-primary rounded-[2.5rem] flex items-center justify-center mx-auto mb-10 border border-primary/20 shadow-glow shadow-primary/10">
           <Clock className="w-12 h-12" />
         </div>
-        <h3 className="text-4xl font-black text-foreground mb-6 tracking-tighter leading-none">{dict.history.emptyTitle}</h3>
-        <p className="text-foreground/40 mb-12 text-xl font-medium leading-relaxed italic">&quot;{dict.history.emptyDesc}&quot;</p>
-        <Link href="/dashboard" className="inline-flex items-center gap-5 bg-primary text-white px-14 py-6 rounded-[2rem] font-black uppercase tracking-[0.2em] text-xs hover:brightness-110 hover:-translate-y-1 active:scale-95 transition-all shadow-glow shadow-primary/30 group">
+        <h3 className="text-3xl sm:text-4xl font-black text-foreground mb-6 tracking-tighter leading-none">{dict.history.emptyTitle}</h3>
+        <p className="text-lg sm:text-xl font-medium text-foreground/40 mb-12 leading-relaxed italic">&quot;{dict.history.emptyDesc}&quot;</p>
+        <Link href="/dashboard" className="inline-flex items-center gap-5 bg-primary text-white px-10 py-5 sm:px-14 sm:py-6 rounded-[2rem] font-black uppercase tracking-[0.2em] text-xs hover:brightness-110 hover:-translate-y-1 active:scale-95 transition-all shadow-glow shadow-primary/30 group">
           <BarChart2 className="w-6 h-6 group-hover:rotate-12 transition-transform" /> {dict.history.btnStart}
         </Link>
       </motion.div>
@@ -210,13 +210,13 @@ export default function HistoryClient() {
             >
               <Link
                 href={`/history/${camp.id}`}
-                className="block h-full bg-card border border-border/80 rounded-[2.5rem] sm:rounded-[3rem] p-6 sm:p-10 shadow-premium hover:shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] hover:border-primary/40 transition-all duration-700 overflow-hidden text-left relative z-10"
+                className="block h-full bg-card border border-border/80 rounded-[2rem] sm:rounded-[3rem] p-5 sm:p-10 shadow-premium hover:shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] hover:border-primary/40 transition-all duration-700 overflow-hidden text-left relative z-10"
               >
                 {/* Platform specific mesh-glow */}
                 <div className={`absolute -top-20 -right-20 w-56 h-56 ${style.bg} rounded-full blur-[80px] group-hover:opacity-100 opacity-60 transition-all duration-700`} />
                 <div className="absolute top-10 left-10 w-1.5 h-1.5 bg-primary rounded-full animate-ping opacity-0 group-hover:opacity-40" />
 
-                <div className="flex justify-between items-start mb-10 relative z-10">
+                <div className="flex justify-between items-start mb-8 sm:mb-10 relative z-10">
                   <div className="space-y-5 flex-grow pr-4">
                     <div className={`inline-flex items-center gap-3 px-5 py-2 rounded-full ${style.bg} border border-${style.color.split('-')[1]}-500/20 ${style.color} text-[10px] font-black uppercase tracking-[0.2em] shadow-sm`}>
                       <div className="animate-pulse">{style.icon}</div>

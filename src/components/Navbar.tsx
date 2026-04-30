@@ -49,24 +49,24 @@ export function Navbar() {
   }
 
   return (
-    <nav className="fixed w-full top-0 z-50 transition-all duration-300 bg-white/80 dark:bg-black/10 backdrop-blur-xl border-b border-border/50 px-6 py-3">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <Link href="/" className="flex items-center gap-2.5 group group-hover:opacity-90 transition-all">
+    <nav className="fixed w-full top-0 z-50 transition-all duration-300 bg-white/80 dark:bg-black/10 backdrop-blur-xl border-b border-border/50 px-4 sm:px-6 py-3">
+      <div className="max-w-7xl mx-auto flex justify-between items-center gap-2">
+        <Link href="/" className="flex items-center gap-2 sm:gap-2.5 shrink-0 group group-hover:opacity-90 transition-all">
           <motion.div
             whileHover={{ rotate: 180, scale: 1.1 }}
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
             className="bg-primary/10 p-1.5 rounded-lg border border-primary/20"
           >
-            <BarChart3 className="w-6 h-6 text-primary" />
+            <BarChart3 className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
           </motion.div>
-          <span className="font-bold text-xl tracking-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <span className="font-bold text-base xs:text-lg sm:text-xl tracking-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent truncate">
             AdWise AI
           </span>
         </Link>
 
-        <div className="flex items-center gap-4 lg:gap-8">
+        <div className="flex items-center gap-1 sm:gap-4 lg:gap-8">
           {session ? (
-            <div className="flex items-center gap-4 lg:gap-8">
+            <div className="flex items-center gap-2 sm:gap-4 lg:gap-8">
               <div className="hidden md:flex items-center gap-6">
                 <Link href="/dashboard" className="flex items-center gap-2 text-foreground/80 hover:text-primary font-bold transition-all hover:-translate-y-0.5">
                   <LayoutDashboard className="w-4 h-4" />
@@ -81,15 +81,15 @@ export function Navbar() {
             </div>
           ) : null}
 
-          <div className="flex items-center gap-2 lg:gap-3">
-            {/* Language Switcher */}
-            <div className="relative">
+          <div className="flex items-center gap-1 sm:gap-2 lg:gap-3">
+            {/* Language Switcher - Hidden on very small screens */}
+            <div className="relative hidden xs:block">
               <button
                 onClick={() => setLangOpen(!langOpen)}
-                className="flex items-center gap-2 px-3 py-2 text-foreground/80 hover:text-primary hover:bg-primary/10 rounded-xl transition-all"
+                className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 text-foreground/80 hover:text-primary hover:bg-primary/10 rounded-xl transition-all"
               >
                 <Languages className="w-4 h-4" />
-                <span className="text-xs font-black uppercase tracking-widest">{language}</span>
+                <span className="text-[10px] sm:text-xs font-black uppercase tracking-widest">{language}</span>
                 <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${langOpen ? "rotate-180" : ""}`} />
               </button>
 
@@ -119,21 +119,21 @@ export function Navbar() {
               </AnimatePresence>
             </div>
 
-            {/* Theme Toggle */}
+            {/* Theme Toggle - Hidden on very small screens */}
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="p-3 text-foreground/60 hover:text-primary hover:bg-primary/10 rounded-xl transition-all group"
+              className="hidden xs:flex p-2 sm:p-3 text-foreground/60 hover:text-primary hover:bg-primary/10 rounded-xl transition-all group"
             >
               {theme === "dark" ? (
-                <Sun className="w-5 h-5 text-accent group-hover:rotate-45 transition-transform" />
+                <Sun className="w-4 h-4 sm:w-5 sm:h-5 text-accent group-hover:rotate-45 transition-transform" />
               ) : (
-                <Moon className="w-5 h-5 group-hover:-rotate-12 transition-transform" />
+                <Moon className="w-4 h-4 sm:w-5 sm:h-5 group-hover:-rotate-12 transition-transform" />
               )}
             </button>
 
             {session ? (
-              <div className="flex items-center gap-3">
-                <div className="hidden sm:flex items-center gap-3 text-[10px] text-foreground/80 bg-foreground/[0.03] border border-border px-4 py-2.5 rounded-xl font-black uppercase tracking-widest">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="hidden lg:flex items-center gap-3 text-[10px] text-foreground/80 bg-foreground/[0.03] border border-border px-4 py-2.5 rounded-xl font-black uppercase tracking-widest">
                   <div className="w-6 h-6 rounded-lg bg-primary/10 flex items-center justify-center">
                     <UserIcon className="w-3.5 h-3.5 text-primary" />
                   </div>
@@ -145,20 +145,20 @@ export function Navbar() {
                     await signOut({ redirect: false });
                     window.location.href = "/";
                   }}
-                  className="p-3 text-foreground/40 hover:text-red-500 hover:bg-red-500/10 rounded-xl transition-all"
+                  className="p-2 sm:p-3 text-foreground/40 hover:text-red-500 hover:bg-red-500/10 rounded-xl transition-all"
                   title={dict.nav.logout}
                 >
-                  <LogOut className="w-5 h-5" />
+                  <LogOut className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
               </div>
             ) : (
-              <div className="flex items-center gap-3 ml-2">
-                <Link href="/auth" className="hidden sm:block text-sm font-semibold text-foreground/70 hover:text-primary transition-colors px-2">
+              <div className="flex items-center gap-1.5 sm:gap-3 ml-1 sm:ml-2">
+                <Link href="/auth" className="hidden sm:block text-xs sm:text-sm font-semibold text-foreground/70 hover:text-primary transition-colors px-1 sm:px-2">
                   {dict.nav.login}
                 </Link>
                 <Link
                   href="/auth?mode=register"
-                  className="bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-[0_8px_20px_-6px_rgba(var(--primary-rgb),0.5)] hover:shadow-[0_8px_25px_-4px_rgba(var(--primary-rgb),0.6)] active:scale-95"
+                  className="bg-primary hover:bg-primary/90 text-white px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl text-[10px] sm:text-sm font-bold transition-all shadow-[0_8px_20px_-6px_rgba(var(--primary-rgb),0.5)] active:scale-95 whitespace-nowrap"
                 >
                   {dict.nav.signup}
                 </Link>
