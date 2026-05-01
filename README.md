@@ -1,69 +1,97 @@
-# AdWise AI - Advanced Ads Optimization Advisor
+# <p align="center">✨ AdWise AI — Master Your Campaigns</p>
 
-AdWise AI is a premium, AI-powered advertising campaign analysis and optimization SaaS designed to help advertisers master their cross-platform metrics (Facebook, Google, TikTok). It eliminates guesswork by analyzing cross-platform metrics to deliver enterprise-grade insights that scale performance instantly.
+<p align="center">
+  <img src="./public/images/banner.png" alt="AdWise AI Banner" width="100%" />
+</p>
 
-## 🚀 Live Demo
-[AdWise AI Live Demo](https://campaign-genius.vercel.app)
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-15+-000000?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-4.0-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/Prisma-ORM-2D3748?style=for-the-badge&logo=prisma&logoColor=white" alt="Prisma" />
+  <img src="https://img.shields.io/badge/Gemini_AI-Flash_2.5-4285F4?style=for-the-badge&logo=google-gemini&logoColor=white" alt="Gemini AI" />
+</p>
 
-## ✨ Features
-- **AI-Powered Diagnostics**: Instant identification of performance leakage and inefficiency.
-- **Visual Performance Analytics**: Custom animated SVG charts for trend analysis and growth trajectory.
-- **Bento Grid Metrics**: Perfectly aligned CPA, CPC, and CTR architecture.
-- **Cross-Platform Support**: Specialized analysis for Facebook Ads, Google Search, and TikTok Spark.
-- **Intelligence Archive**: Complete history of analyzed campaigns with search and filtering.
-- **Premium UI/UX**: Modern glassmorphism design, smooth page transitions, and responsive mobile experience.
-- **Neural Authentication**: Secure access with unified login and registration.
+---
 
-## 🛠 Tech Stack
-## 🚀 Advanced Features
+### 🚀 Overview
+**AdWise AI** is a high-performance, AI-driven SaaS platform engineered for modern advertisers. It provides enterprise-grade campaign diagnostics, cross-platform performance tracking (Facebook, Google, TikTok), and actionable AI insights to maximize ROI and scale performance instantly.
 
-- **Neural Engine 2.5**: Powered by Gemini 2.5 Flash for ultra-low latency, expert-level campaign diagnostics.
-- **Enterprise Analytics**: Platform-specific logic for Google, Facebook, and TikTok.
-- **Dual-Language Support**: Full Internationalization (i18n) for English and Bahasa Indonesia.
-- **Responsive Architecture**: Pixel-perfect UI/UX across all mobile, tablet, and desktop devices.
-- **Secure Authentication**: Robust JWT-based session management with NextAuth.
+> [!TIP]
+> **Built by Renaldi Mohamad** — A premium solution for data-driven marketing.
 
-## 🔑 Dummy Accounts for Testing
-Use these credentials to evaluate the application:
+---
 
-1. **Email**: `ahmad.fauzan@mailtest.com` | **Password**: `Ahmad123!`
-2. **Email**: `siti.rahmawati@mailtest.com` | **Password**: `Siti123!`
-3. **Email**: `rizky.pratama@mailtest.com` | **Password**: `Rizky123!`
+### 💎 Key Features
+- **🧠 Neural Diagnostics**: Instant performance analysis using Gemini 2.5 Flash.
+- **📊 Advanced Visuals**: Interactive SVG charts and growth trajectory mapping via Recharts.
+- **🍱 Bento Grid Architecture**: Clean, high-density metric visualization for CPA, CPC, and CTR.
+- **🌐 Global Reach**: Seamless multi-language support (English & Bahasa Indonesia).
+- **🔒 Enterprise Security**: Secure session management via NextAuth and PostgreSQL.
+- **📱 Fluid UI/UX**: Premium glassmorphism design with Framer Motion animations.
 
-## 💻 Running Locally
+---
 
-1. **Clone & Install**:
+### 🛠 Tech Stack
+- **Framework**: [Next.js 15+](https://nextjs.org/) (App Router)
+- **Styling**: [Tailwind CSS 4.0](https://tailwindcss.com/)
+- **Database**: [Prisma ORM](https://www.prisma.io/) with PostgreSQL
+- **AI Engine**: [Google Gemini 2.5 Flash](https://ai.google.dev/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Charts**: [Recharts](https://recharts.org/)
+- **Auth**: [NextAuth.js](https://next-auth.js.org/)
+
+---
+
+### 🛠 Installation & Setup
+
+1. **Clone the Repository**:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/renaldimohamad/campaign-genius.git
    cd campaign-genius
+   ```
+
+2. **Install Dependencies**:
+   ```bash
    npm install
    ```
 
-2. **Environment Setup**:
-   Create a `.env` file:
+3. **Configure Environment Variables**:
+   Create a `.env` file in the root directory:
    ```env
-   DATABASE_URL="your-postgresql-url"
-   NEXTAUTH_SECRET="your-secret"
+   DATABASE_URL="postgresql://user:password@localhost:5432/adwise"
+   NEXTAUTH_SECRET="your-super-secret-key"
    NEXTAUTH_URL="http://localhost:3000"
    GEMINI_API_KEY="your-gemini-api-key"
    ```
 
-3. **Initialize & Run**:
+4. **Initialize Database**:
    ```bash
    npx prisma db push
+   ```
+
+5. **Start Development Server**:
+   ```bash
    npm run dev
    ```
 
-## 🧪 Manual AI API Testing
+---
 
-To verify model connectivity (Gemini 2.5 Flash):
-
+### 🧪 API Connectivity Test
+Test the Gemini 2.5 Flash integration directly:
 ```bash
 curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=YOUR_API_KEY" \
     -H 'Content-Type: application/json' \
     -X POST \
-    -d '{"contents": [{"parts":[{"text": "Test campaign analysis: CTR 5%. Response in JSON."}]}]}'
+    -d '{"contents": [{"parts":[{"text": "Analyze this: CPC $1.2, CTR 3.5%. Give suggestions in JSON."}]}]}'
 ```
 
-## 📄 License
+---
+
+### 👤 Developer
+Built with ❤️ by **Renaldi Mohamad**
+
+---
+
+### 📄 License
 This project is licensed under the MIT License.
+
