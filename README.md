@@ -15,12 +15,13 @@ AdWise AI is a premium, AI-powered advertising campaign analysis and optimizatio
 - **Neural Authentication**: Secure access with unified login and registration.
 
 ## 🛠 Tech Stack
-- **Frontend**: Next.js 16 (App Router), React 19, Framer Motion
-- **Styling**: Tailwind CSS 4, Lucide React
-- **Backend**: Next.js API Routes, Prisma ORM
-- **Database**: PostgreSQL
-- **Authentication**: NextAuth.js
-- **AI**: Google Generative AI (Gemini)
+## 🚀 Advanced Features
+
+- **Neural Engine 2.5**: Powered by Gemini 2.5 Flash for ultra-low latency, expert-level campaign diagnostics.
+- **Enterprise Analytics**: Platform-specific logic for Google, Facebook, and TikTok.
+- **Dual-Language Support**: Full Internationalization (i18n) for English and Bahasa Indonesia.
+- **Responsive Architecture**: Pixel-perfect UI/UX across all mobile, tablet, and desktop devices.
+- **Secure Authentication**: Robust JWT-based session management with NextAuth.
 
 ## 🔑 Dummy Accounts for Testing
 Use these credentials to evaluate the application:
@@ -31,37 +32,38 @@ Use these credentials to evaluate the application:
 
 ## 💻 Running Locally
 
-1. **Clone the repository**:
+1. **Clone & Install**:
    ```bash
    git clone <repository-url>
    cd campaign-genius
-   ```
-
-2. **Install dependencies**:
-   ```bash
    npm install
    ```
 
-3. **Set up environment variables**:
-   Create a `.env` file in the root directory:
+2. **Environment Setup**:
+   Create a `.env` file:
    ```env
-   DATABASE_URL="postgresql://user:password@localhost:5432/db"
+   DATABASE_URL="your-postgresql-url"
    NEXTAUTH_SECRET="your-secret"
    NEXTAUTH_URL="http://localhost:3000"
    GEMINI_API_KEY="your-gemini-api-key"
    ```
 
-4. **Initialize Database**:
+3. **Initialize & Run**:
    ```bash
    npx prisma db push
-   npx prisma db seed
-   ```
-
-5. **Run the development server**:
-   ```bash
    npm run dev
    ```
-   Open [http://localhost:3000](http://localhost:3000) with your browser.
+
+## 🧪 Manual AI API Testing
+
+To verify model connectivity (Gemini 2.5 Flash):
+
+```bash
+curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=YOUR_API_KEY" \
+    -H 'Content-Type: application/json' \
+    -X POST \
+    -d '{"contents": [{"parts":[{"text": "Test campaign analysis: CTR 5%. Response in JSON."}]}]}'
+```
 
 ## 📄 License
 This project is licensed under the MIT License.

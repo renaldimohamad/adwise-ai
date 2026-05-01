@@ -8,18 +8,17 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    default: "AdWise AI - Advanced Ads Optimization Advisor",
+    default: "AdWise AI - Enterprise Ads Optimization",
     template: "%s | AdWise AI"
   },
-  description: "AI-powered advertising campaign analysis and optimization advisor. Eliminate guesswork with enterprise-grade neural insights.",
-  keywords: ["Ads Optimization", "AI Ads Advisor", "Campaign Analysis", "Digital Marketing AI", "AdWise AI"],
+  description: "Next-generation campaign analysis with Neural Engine 2.5. Achieve 10x marketing efficiency with data-driven AI diagnostics.",
+  keywords: ["Ads Optimization", "AI Ads Advisor", "Campaign Analysis", "Digital Marketing AI", "AdWise AI", "SaaS Analytics"],
   icons: {
     icon: "/favicon.ico",
-    apple: "/favicon.ico",
   },
   openGraph: {
-    title: "AdWise AI - Advanced Ads Optimization Advisor",
-    description: "Master your ads with AI Intelligence. Enterprise-grade insights that scale your performance instantly.",
+    title: "AdWise AI - Neural Campaign Optimization",
+    description: "Transform your marketing data into actionable growth strategies using AdWise Neural Engine.",
     url: "https://campaign-genius.vercel.app",
     siteName: "AdWise AI",
     locale: "en_US",

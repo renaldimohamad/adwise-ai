@@ -59,7 +59,7 @@ export function Navbar() {
           >
             <BarChart3 className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
           </motion.div>
-          <span className="font-bold text-sm xs:text-base sm:text-xl tracking-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent truncate max-w-[100px] xs:max-w-none">
+          <span className="font-black text-sm xs:text-base sm:text-xl tracking-tight bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent truncate max-w-[120px] xs:max-w-none">
             {dict.common.brand}
           </span>
         </Link>

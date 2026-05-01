@@ -16,7 +16,6 @@ import {
 import Link from "next/link";
 import { format } from "date-fns";
 import { useLanguage } from "@/context/LanguageContext";
-import { PremiumSpinner } from "@/components/LoadingStates";
 import { PerformanceChart } from "@/components/PerformanceChart";
 
 type CampaignResult = {
@@ -203,7 +202,7 @@ export default function HistoryDetailClient({ id }: { id: string }) {
             </div>
           </div>
         </div>
-        <div className="h-[300px] w-full">
+        <div className="w-full h-[350px] min-h-[350px] relative overflow-hidden">
           <PerformanceChart
             data={[
               { label: "Day 1", value: Math.round(data.ctr * 10) },
